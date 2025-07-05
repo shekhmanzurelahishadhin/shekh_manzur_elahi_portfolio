@@ -2024,7 +2024,7 @@
             <div class="contact-container">
                 <div class="contact-form">
                     <h3>Send a Message</h3>
-                    <form>
+                    <form onsubmit="sendWhatsAppMessage(event)">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" required placeholder="Enter your name">
@@ -2189,6 +2189,34 @@
             });
         });
     </script>
+    <script>
+        function sendWhatsAppMessage(e) {
+            e.preventDefault(); // Prevent the form from submitting normally
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            const fullMessage =
+                `*New Contact Message from Website*%0A` +
+                `👤 *Name:* ${encodeURIComponent(name)}%0A` +
+                `📧 *Email:* ${encodeURIComponent(email)}%0A` +
+                `📝 *Subject:* ${encodeURIComponent(subject)}%0A` +
+                `💬 *Message:* ${encodeURIComponent(message)}`;
+
+            const phoneNumber = "8801973829988"; // Your WhatsApp number (without +)
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${fullMessage}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
 </body>
 
 </html>
