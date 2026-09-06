@@ -468,6 +468,43 @@
   document.querySelectorAll('[data-count]').forEach((el) => countObserver.observe(el));
 
   /* ========================================================
+     EXPERIENCE DURATIONS
+     Computed from the dates in the markup so the current role
+     never goes stale and the totals stay honest.
+     ======================================================== */
+  (function experienceDurations() {
+    function months(fromStr, toStr) {
+      const [fy, fm] = fromStr.split('-').map(Number);
+      const to = toStr ? toStr.split('-').map(Number) : null;
+      const now = new Date();
+      const ty = to ? to[0] : now.getFullYear();
+      const tm = to ? to[1] : now.getMonth() + 1;
+      return (ty - fy) * 12 + (tm - fm) + 1; // inclusive of the final month
+    }
+
+    function label(n) {
+      const y = Math.floor(n / 12);
+      const m = n % 12;
+      if (!y) return m + ' mo';
+      if (!m) return y + (y > 1 ? ' yrs' : ' yr');
+      return y + (y > 1 ? ' yrs' : ' yr') + ' ' + m + ' mo';
+    }
+
+    document.querySelectorAll('.tl-dur[data-from]').forEach((el) => {
+      el.textContent = label(months(el.dataset.from, el.dataset.to));
+    });
+
+    // total years for the summary tile, rounded down
+    const since = document.querySelector('[data-since]');
+    if (since) {
+      const total = Math.floor(months(since.dataset.since) / 12);
+      since.dataset.count = String(total);
+      since.dataset.suffix = '+';
+      since.textContent = total + '+';
+    }
+  })();
+
+  /* ========================================================
      TYPING EFFECT
      ======================================================== */
   const typedEl = document.getElementById('typed');
