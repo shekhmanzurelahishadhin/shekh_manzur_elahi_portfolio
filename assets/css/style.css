@@ -620,74 +620,134 @@
       box-shadow: 0 12px 28px var(--glow-1);
     }
 
-    /* HERO 3D PHOTO CARD */
-    .hero-photo-wrap { perspective: 1200px; }
+    /* HERO PHOTO CARD */
+
+    /* Registering the angle lets us animate the CONIC GRADIENT itself.
+       The previous version rotated the element, which swung its corners
+       outside the photo and produced stray coloured diamonds. */
+    @property --ring-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .hero-photo-wrap { perspective: 1200px; position: relative; }
 
     .hero-photo-ring {
+      --ring-angle: 0deg;
       position: relative;
-      width: 340px; height: 400px;
+      width: 340px; height: 420px;
+      padding: 9px;
+      border-radius: 30px;
+      background: var(--glass);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      box-shadow: var(--shadow), inset 0 1px 0 var(--sheen);
       transform-style: preserve-3d;
-      transition: transform 0.25s var(--ease);
-      animation: floatCard 6s ease-in-out infinite;
+      transition: transform 0.3s var(--ease);
+      animation: floatCard 7s ease-in-out infinite;
     }
-    @keyframes floatCard { 0%,100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+    @keyframes floatCard { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
 
+    /* Gradient hairline ring: a masked border, so nothing can overhang. */
     .hero-photo-ring::before {
       content: '';
       position: absolute;
-      inset: -2px;
-      border-radius: 28px;
-      background: conic-gradient(from 0deg, var(--violet), var(--cyan), var(--pink), var(--amber), var(--violet));
-      animation: spinBorder 6s linear infinite;
-      z-index: 0;
-      filter: blur(0.5px);
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--ring-angle),
+        var(--violet), var(--cyan), var(--pink), var(--amber), var(--violet));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      animation: ringSpin 9s linear infinite;
+      pointer-events: none;
+      z-index: 2;
     }
+    @keyframes ringSpin { to { --ring-angle: 360deg; } }
+
+    /* Soft bloom behind the card. A blurred circle, so it never shows edges. */
     .hero-photo-ring::after {
       content: '';
       position: absolute;
-      inset: -14px;
+      inset: 6%;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--violet), var(--cyan), var(--pink), var(--violet));
-      filter: blur(58px);
-      opacity: 0.22;
+      background: radial-gradient(circle, var(--glow-1), transparent 70%);
+      filter: blur(52px);
+      opacity: 0.85;
       z-index: -1;
-      animation: spinBorder 14s linear infinite;
+      pointer-events: none;
     }
-    @keyframes spinBorder { to { transform: rotate(360deg); } }
 
     .hero-photo-ring img {
       position: relative;
       z-index: 1;
       width: 100%; height: 100%;
       object-fit: cover;
-      border-radius: 26px;
-      border: 5px solid var(--bg);
-      transform: translateZ(30px);
+      object-position: center top;
+      border-radius: 22px;
+      display: block;
+      transform: translateZ(28px);
+      transition: transform 0.5s var(--ease);
     }
+    .hero-photo-wrap:hover .hero-photo-ring img { transform: translateZ(28px) scale(1.02); }
 
+    /* Floating stat badges */
     .hero-stat-badge {
       position: absolute;
-      background: var(--float-bg);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--float-bg-solid);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid var(--float-border);
       border-radius: 16px;
-      padding: 0.8rem 1.15rem;
-      z-index: 3;
-      box-shadow: var(--shadow-sm);
+      padding: 0.7rem 1rem;
+      z-index: 4;
+      box-shadow: var(--shadow);
       transform: translateZ(70px);
+      transition: transform 0.4s var(--ease);
+    }
+    .hero-stat-badge i {
+      width: 30px; height: 30px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 0.72rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
     }
     .hero-stat-badge .stat-num {
       font-family: var(--mono);
-      font-size: 1.45rem; font-weight: 700;
+      font-size: 1.2rem; font-weight: 700;
       line-height: 1;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      color: var(--heading);
     }
-    .hero-stat-badge .stat-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
-    .badge-tl { top: -18px; left: -36px; }
-    .badge-br { bottom: -18px; right: -36px; }
+    .hero-stat-badge .stat-lbl {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+    .badge-tl { top: 26px; left: -46px; }
+    .badge-br { bottom: 26px; right: -46px; }
 
+    /* keep the badges clear of the viewport edge on narrow desktops */
+    @media (max-width: 1100px) {
+      .badge-tl { left: -20px; }
+      .badge-br { right: -20px; }
+    }
+
+    @media (max-width: 480px) {
+      .badge-tl { left: -8px; }
+      .badge-br { right: -8px; }
+      .hero-stat-badge { padding: 0.55rem 0.8rem; gap: 0.55rem; }
+      .hero-stat-badge i { width: 26px; height: 26px; }
+      .hero-stat-badge .stat-num { font-size: 1.05rem; }
+    }
     /* Scroll cue */
     .scroll-cue {
       position: absolute;
