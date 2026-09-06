@@ -468,6 +468,34 @@
   document.querySelectorAll('[data-count]').forEach((el) => countObserver.observe(el));
 
   /* ========================================================
+     EDUCATION RESULT RINGS
+     ======================================================== */
+  (function eduRings() {
+    const rings = document.querySelectorAll('.edu-ring[data-pct]');
+    if (!rings.length) return;
+
+    const CIRC = 2 * Math.PI * 26; // r=26 in the inline SVG
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const fg = entry.target.querySelector('.fg');
+        const pct = parseFloat(entry.target.dataset.pct) || 0;
+        fg.style.strokeDasharray = CIRC;
+        fg.style.strokeDashoffset = CIRC * (1 - pct / 100);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+
+    rings.forEach((r) => {
+      const fg = r.querySelector('.fg');
+      fg.style.strokeDasharray = CIRC;
+      fg.style.strokeDashoffset = CIRC;
+      io.observe(r);
+    });
+  })();
+
+  /* ========================================================
      EXPERIENCE DURATIONS
      Computed from the dates in the markup so the current role
      never goes stale and the totals stay honest.

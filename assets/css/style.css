@@ -747,9 +747,20 @@
     /* ============================================================
        ABOUT
        ============================================================ */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: start;
+    }
 
-    .about-para { font-size: 1.02rem; color: var(--muted); line-height: 1.95; margin-bottom: 1.2rem; }
+    .about-para {
+      font-size: 1.02rem;
+      color: var(--muted);
+      line-height: 1.95;
+      margin-bottom: 1.15rem;
+      text-wrap: pretty;
+    }
     .about-para strong { color: var(--heading); font-weight: 600; }
 
     .about-stats {
@@ -767,28 +778,80 @@
     }
     .stat-tile .l { font-size: 0.74rem; color: var(--muted); margin-top: 0.45rem; letter-spacing: 0.04em; }
 
-    .qual-cards { display: flex; flex-direction: column; gap: 1.2rem; }
-    .qual-card { padding: 1.8rem; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s; }
-    .qual-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--border-strong); }
-    .qual-card h3 {
-      font-size: 1rem; font-weight: 700; color: var(--heading);
-      margin-bottom: 1rem;
+    /* quick profile card — facts a reader actually wants, not a repeat of Skills */
+    .profile-card { padding: 1.9rem; }
+    .profile-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 1.3rem;
       display: flex; align-items: center; gap: 0.6rem;
     }
-    .qual-card ul { list-style: none; }
-    .qual-card ul li {
-      font-size: 0.9rem; color: var(--muted);
-      padding: 0.42rem 0 0.42rem 1.35rem;
-      position: relative;
+    .profile-card h3 i { color: var(--violet); font-size: 0.9rem; }
+
+    .pf-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.72rem 0;
       border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
     }
-    .qual-card ul li:last-child { border-bottom: none; }
-    .qual-card ul li::before {
+    .pf-row:last-of-type { border-bottom: none; }
+    .pf-row dt {
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-shrink: 0;
+    }
+    .pf-row dt i { width: 15px; text-align: center; opacity: 0.65; font-size: 0.78rem; }
+    .pf-row dd { color: var(--text); font-weight: 500; text-align: right; }
+    .pf-row dd small { display: block; color: var(--muted); font-weight: 400; font-size: 0.76rem; margin-top: 2px; }
+
+    .pf-open {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      color: #16a34a; font-weight: 600;
+    }
+    html[data-theme="dark"] .pf-open { color: #4ade80; }
+    .pf-open::before {
       content: '';
-      position: absolute; left: 0; top: 0.95rem;
-      width: 6px; height: 6px; border-radius: 2px;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor;
+      animation: nowPulse 2s infinite;
     }
+
+    /* what I actually do — replaces the bullet lists that repeated Skills */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-top: 3rem;
+    }
+    .focus-card {
+      padding: 1.9rem;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
+    }
+    .focus-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .focus-card .ico {
+      width: 50px; height: 50px;
+      border-radius: 16px;
+      display: grid; place-items: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.1rem;
+      border: 1px solid var(--border);
+      transition: transform 0.4s var(--ease);
+    }
+    .focus-card:hover .ico { transform: translateY(-3px) rotate(-8deg) scale(1.06); }
+    .focus-card.f1 .ico { background: color-mix(in srgb, var(--violet) 14%, transparent); color: var(--violet); }
+    .focus-card.f2 .ico { background: color-mix(in srgb, var(--cyan) 14%, transparent);   color: var(--cyan); }
+    .focus-card.f3 .ico { background: color-mix(in srgb, var(--amber) 14%, transparent);  color: var(--amber); }
+    .focus-card h3 {
+      font-size: 1rem; font-weight: 700; color: var(--heading);
+      margin-bottom: 0.6rem; letter-spacing: -0.01em;
+    }
+    .focus-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; text-wrap: pretty; }
 
     /* ============================================================
        SKILLS
@@ -1177,31 +1240,94 @@
        EDUCATION
        ============================================================ */
     .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-    .edu-card { padding: 2rem; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s; }
+
+    .edu-card {
+      padding: 1.9rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
+    }
     .edu-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+
+    .edu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
     .edu-icon {
-      width: 52px; height: 52px;
-      border-radius: 16px;
+      width: 48px; height: 48px;
+      border-radius: 15px;
       display: grid; place-items: center;
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       color: var(--violet);
       background: color-mix(in srgb, var(--violet) 12%, transparent);
       border: 1px solid var(--border);
-      margin-bottom: 1.2rem;
+      transition: transform 0.4s var(--ease);
+      flex-shrink: 0;
     }
-    .edu-card h3 { font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.45rem; line-height: 1.45; }
-    .edu-year { font-family: var(--mono); font-size: 0.74rem; color: var(--cyan); margin-bottom: 0.55rem; }
-    .edu-card p { font-size: 0.87rem; color: var(--muted); margin-bottom: 0.25rem; }
-    .edu-gpa {
-      display: inline-block; margin-top: 1.1rem;
-      background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 20%, transparent), color-mix(in srgb, var(--cyan) 20%, transparent));
+    .edu-card:hover .edu-icon { transform: translateY(-3px) rotate(-8deg) scale(1.06); }
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text);
+      background: var(--glass-hover);
       border: 1px solid var(--border);
-      color: var(--heading);
-      font-family: var(--mono); font-size: 0.78rem;
-      padding: 0.35rem 0.85rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 999px;
     }
 
+    .edu-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 0.55rem;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+    .edu-inst { font-size: 0.87rem; color: var(--text); font-weight: 500; margin-bottom: 0.2rem; }
+    .edu-dept { font-size: 0.81rem; color: var(--muted); }
+
+    /* result shown as a ring so the number reads at a glance */
+    .edu-result {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      margin-top: auto;
+      padding-top: 1.4rem;
+    }
+    .edu-ring { position: relative; width: 62px; height: 62px; flex-shrink: 0; }
+    .edu-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .edu-ring circle { fill: none; stroke-width: 5; stroke-linecap: round; }
+    .edu-ring .bg { stroke: var(--glass-hover); }
+    .edu-ring .fg {
+      stroke: url(#eduGrad);
+      stroke-dasharray: 163.36;
+      stroke-dashoffset: 163.36;
+      transition: stroke-dashoffset 1.4s var(--ease);
+    }
+    .edu-ring .val {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+    .edu-result .meta .lbl {
+      font-family: var(--mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .edu-result .meta .out { font-size: 0.88rem; color: var(--text); font-weight: 600; }
     /* ============================================================
        CERTS & ACTIVITIES
        ============================================================ */

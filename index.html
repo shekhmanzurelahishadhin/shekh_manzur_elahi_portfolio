@@ -39,7 +39,7 @@
     }
     html[data-theme="light"] body { background: #f2f3fb; color: #2b2f52; }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css?v=2.2"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=2.3"/>
 
   <script type="application/ld+json">
   {
@@ -227,11 +227,12 @@
       <span class="sec-label">Who I am</span>
       <h2 class="sec-title">About <span class="grad-text">Me</span></h2>
     </div>
+
     <div class="about-grid">
       <div class="reveal">
-        <p class="about-para">I'm a passionate <strong>Full Stack Web Developer</strong> with expertise in ERP systems, Laravel, and SQL-based backends. My approach combines technical knowledge with business acumen to deliver solutions that drive operational efficiency.</p>
-        <p class="about-para">With hands-on experience in developing <strong>ERP solutions across industries</strong>, designing complex database systems, and implementing cron jobs for automated tasks, I bridge the gap between business requirements and technical implementation.</p>
-        <p class="about-para">My strength lies in building <strong>scalable web applications</strong> with secure role-based access, optimizing database performance with stored procedures, and managing backend operations efficiently.</p>
+        <p class="about-para">I'm a <strong>Full Stack Web Developer</strong> based in Dhaka, working mostly on the systems companies run their operations on — ERP platforms, internal dashboards and the APIs behind them.</p>
+        <p class="about-para">Most of my work starts with a business problem rather than a technical one: how payroll should actually be calculated, who is allowed to approve a transfer, why a report takes forty seconds to load. I spend as much time understanding the workflow as writing the <strong>Laravel</strong> code that implements it.</p>
+        <p class="about-para">On the technical side my strength is the backend — <strong>secure role-based access</strong>, multi-tenant authentication, and keeping queries fast as tables grow into the millions with stored procedures and well-designed schemas.</p>
 
         <div class="about-stats">
           <div class="stat-tile glass shine">
@@ -248,29 +249,52 @@
           </div>
         </div>
       </div>
-      <div class="qual-cards">
-        <div class="qual-card glass shine reveal">
-          <h3><i class="fas fa-bolt" style="color:var(--amber)"></i> Key Qualifications</h3>
-          <ul>
-            <li>3 years in Full Stack Development</li>
-            <li>Expert in Laravel, PHP, Yii2, MySQL, and SQL Server</li>
-            <li>Proficient in JavaScript, React.js, REST API development</li>
-            <li>Skilled in implementing multi-authentication systems</li>
-            <li>Strong database design and optimization skills</li>
-            <li>Experience in ERP development across industries</li>
-          </ul>
+
+      <dl class="profile-card glass shine reveal">
+        <h3><i class="fas fa-id-badge"></i> Profile</h3>
+
+        <div class="pf-row">
+          <dt><i class="fas fa-location-dot"></i> Location</dt>
+          <dd>Dhaka, Bangladesh</dd>
         </div>
-        <div class="qual-card glass shine reveal">
-          <h3><i class="fas fa-bullseye" style="color:var(--pink)"></i> Area of Expertise</h3>
-          <ul>
-            <li>ERP System Development</li>
-            <li>Database Design &amp; Optimization</li>
-            <li>Backend Development with PHP/Laravel</li>
-            <li>Frontend Development with React.js</li>
-            <li>Role-Based Access Control</li>
-            <li>Automated Task Management (Cron Jobs)</li>
-          </ul>
+        <div class="pf-row">
+          <dt><i class="fas fa-briefcase"></i> Current role</dt>
+          <dd>Software Engineer<small>Multibrand Group</small></dd>
         </div>
+        <div class="pf-row">
+          <dt><i class="fas fa-clock-rotate-left"></i> Experience</dt>
+          <dd>3+ years<small>Since Nov 2022</small></dd>
+        </div>
+        <div class="pf-row">
+          <dt><i class="fas fa-graduation-cap"></i> Education</dt>
+          <dd>B.Sc in CSE<small>CGPA 3.97 / 4.00</small></dd>
+        </div>
+        <div class="pf-row">
+          <dt><i class="fas fa-language"></i> Languages</dt>
+          <dd>Bangla, English</dd>
+        </div>
+        <div class="pf-row">
+          <dt><i class="fas fa-circle-check"></i> Availability</dt>
+          <dd><span class="pf-open">Open to opportunities</span></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="focus-grid">
+      <div class="focus-card f1 glass shine reveal">
+        <div class="ico"><i class="fas fa-cubes"></i></div>
+        <h3>ERP Systems</h3>
+        <p>Building the modules businesses run on — HRM, Payroll, Inventory, Finance and CRM — across manufacturing, retail and services, on Laravel and Yii2.</p>
+      </div>
+      <div class="focus-card f2 glass shine reveal">
+        <div class="ico"><i class="fas fa-shield-halved"></i></div>
+        <h3>Backend &amp; APIs</h3>
+        <p>REST APIs with token authentication, multi-auth login, granular role and permission layers, plus queued jobs and cron automation for reporting and data sync.</p>
+      </div>
+      <div class="focus-card f3 glass shine reveal">
+        <div class="ico"><i class="fas fa-database"></i></div>
+        <h3>Database Engineering</h3>
+        <p>Designing schemas in MySQL and SQL Server, then keeping them fast — stored procedures, triggers and query tuning so reports stay quick as data grows.</p>
       </div>
     </div>
   </div>
@@ -550,38 +574,83 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
-    <div class="sec-head reveal">
+    <div class="sec-head center reveal">
       <span class="sec-index">05 / 07</span>
       <span class="sec-label">Academic Background</span>
       <h2 class="sec-title"><span class="grad-text">Education</span></h2>
+      <p class="sec-sub">A computer science foundation, carried through with consistent results.</p>
     </div>
+
+    <!-- shared gradient for every result ring -->
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+      <defs>
+        <linearGradient id="eduGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="var(--violet)"/>
+          <stop offset="100%" stop-color="var(--cyan)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
     <div class="edu-grid">
 
       <div class="edu-card glass shine reveal tilt">
-        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="edu-top">
+          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <span class="edu-year">2021</span>
+        </div>
         <h3>B.Sc in Computer Science &amp; Engineering</h3>
-        <div class="edu-year">2021</div>
-        <p>Daffodil International University (DIU), Dhaka</p>
-        <p>FSIT</p>
-        <span class="edu-gpa">CGPA: 3.97 / 4.00</span>
+        <div class="edu-inst">Daffodil International University</div>
+        <div class="edu-dept">Faculty of Science &amp; Information Technology · Dhaka</div>
+        <div class="edu-result">
+          <div class="edu-ring" data-pct="99.25">
+            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
+            <span class="val">3.97</span>
+          </div>
+          <div class="meta">
+            <span class="lbl">CGPA</span>
+            <span class="out">3.97 out of 4.00</span>
+          </div>
+        </div>
       </div>
 
       <div class="edu-card glass shine reveal tilt">
-        <div class="edu-icon"><i class="fas fa-school"></i></div>
-        <h3>Higher Secondary School Certificate (HSC)</h3>
-        <div class="edu-year">2016</div>
-        <p>Dhaka City College</p>
-        <p>Science Group</p>
-        <span class="edu-gpa">GPA: 5.00 / 5.00</span>
+        <div class="edu-top">
+          <div class="edu-icon"><i class="fas fa-school"></i></div>
+          <span class="edu-year">2016</span>
+        </div>
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <div class="edu-inst">Dhaka City College</div>
+        <div class="edu-dept">Science Group · Dhaka</div>
+        <div class="edu-result">
+          <div class="edu-ring" data-pct="100">
+            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
+            <span class="val">5.00</span>
+          </div>
+          <div class="meta">
+            <span class="lbl">GPA</span>
+            <span class="out">5.00 out of 5.00</span>
+          </div>
+        </div>
       </div>
 
       <div class="edu-card glass shine reveal tilt">
-        <div class="edu-icon"><i class="fas fa-book"></i></div>
+        <div class="edu-top">
+          <div class="edu-icon"><i class="fas fa-book"></i></div>
+          <span class="edu-year">2014</span>
+        </div>
         <h3>Secondary School Certificate (SSC)</h3>
-        <div class="edu-year">2014</div>
-        <p>Motijheel Model High School &amp; College</p>
-        <p>Science Group</p>
-        <span class="edu-gpa">GPA: 5.00 / 5.00</span>
+        <div class="edu-inst">Motijheel Model High School &amp; College</div>
+        <div class="edu-dept">Science Group · Dhaka</div>
+        <div class="edu-result">
+          <div class="edu-ring" data-pct="100">
+            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
+            <span class="val">5.00</span>
+          </div>
+          <div class="meta">
+            <span class="lbl">GPA</span>
+            <span class="out">5.00 out of 5.00</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -732,7 +801,7 @@
 </button>
 
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="assets/js/projects.js?v=2.2"></script>
-<script defer src="assets/js/main.js?v=2.2"></script>
+<script defer src="assets/js/projects.js?v=2.3"></script>
+<script defer src="assets/js/main.js?v=2.3"></script>
 </body>
 </html>
