@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex"/>
+  <meta name="theme-color" content="#07081a"/>
+  <meta name="author" content="Shekh Manzur Elahi"/>
+  <title>Page Not Found | Shekh Manzur Elahi</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    /* Base fallback, inlined on purpose: if style.css is slow or fails to load,
+       the page still renders readable in the correct theme instead of flashing
+       unstyled white. style.css overrides all of this. */
+    html { color-scheme: dark light; }
+    body {
+      margin: 0;
+      background: #07081a;
+      color: #eef0ff;
+      font-family: 'Sora', system-ui, -apple-system, sans-serif;
+    }
+    html[data-theme="light"] body { background: #f2f3fb; color: #2b2f52; }
+  </style>
+  <link rel="stylesheet" href="assets/css/style.css?v=2.1"/>
+
+  <script>
+    // set the saved theme before first paint so there is no light/dark flash
+    try {
+      var t = localStorage.getItem('sme-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+
+  <style>
+    .nf {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+      padding: 8rem 0 5rem;
+    }
+    .nf-inner { text-align: center; }
+
+    .nf-code {
+      font-family: var(--mono);
+      font-size: clamp(6rem, 22vw, 15rem);
+      font-weight: 700;
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      margin-bottom: 1.4rem;
+      position: relative;
+      display: block;
+    }
+    /* soft aura behind the numerals */
+    .nf-code::after {
+      content: '';
+      position: absolute;
+      inset: -18% 28%;
+      background: radial-gradient(circle, var(--glow-1), transparent 68%);
+      filter: blur(46px);
+      z-index: -1;
+      animation: nfPulse 5s ease-in-out infinite;
+    }
+    @keyframes nfPulse { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+
+    .nf-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.95rem;
+      border-radius: 999px;
+      margin-bottom: 2.2rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 2;
+    }
+    .nf-tag i { color: var(--amber); font-size: 0.75rem; }
+
+    .nf h1 {
+      font-size: clamp(1.5rem, 4.2vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--heading);
+      margin-bottom: 0.9rem;
+      text-wrap: balance;
+    }
+    .nf > .container > .nf-inner > p {
+      color: var(--muted);
+      max-width: 470px;
+      margin: 0 auto 2.4rem;
+      line-height: 1.85;
+      text-wrap: pretty;
+    }
+
+    .nf-actions {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+
+    /* quick links out of the dead end */
+    .nf-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .nf-link {
+      padding: 1.2rem 1.3rem;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+    }
+    .nf-link:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .nf-link i {
+      font-size: 1rem;
+      color: var(--violet);
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+    .nf-link strong {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 0.2rem;
+    }
+    .nf-link span { font-size: 0.79rem; color: var(--muted); line-height: 1.6; }
+
+    @media (max-width: 700px) {
+      .nf { padding-top: 7rem; }
+      .nf-links { grid-template-columns: 1fr; max-width: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#nf-main" class="skip-link">Skip to content</a>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div id="cursor-glow"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SM</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Shekh Manzur <span>Elahi</span></span>
+      <span class="nav-logo-title">Full Stack Developer</span>
+    </div>
+  </a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#education">Education</a></li>
+      <li><a href="index.html#contact" class="nav-cta"><i class="fas fa-paper-plane"></i> Contact</a></li>
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme">
+      <i class="fas fa-sun ic-sun"></i>
+      <i class="fas fa-moon ic-moon"></i>
+    </button>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <span class="drawer-label">Navigation</span>
+  <a href="index.html"><i class="fas fa-house"></i> Home</a>
+  <a href="index.html#about"><i class="fas fa-user"></i> About</a>
+  <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
+  <a href="index.html#experience"><i class="fas fa-briefcase"></i> Experience</a>
+  <a href="projects.html"><i class="fas fa-folder-open"></i> All Projects</a>
+  <a href="index.html#education"><i class="fas fa-graduation-cap"></i> Education</a>
+  <div class="drawer-divider"></div>
+  <div class="drawer-bottom">
+    <a href="index.html#contact" class="drawer-cta"><i class="fas fa-paper-plane"></i> Contact Me</a>
+    <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener"><i class="fas fa-download"></i> Resume</a>
+  </div>
+</div>
+
+<!-- 404 -->
+<main class="nf" id="nf-main">
+  <div class="container">
+    <div class="nf-inner">
+      <span class="nf-tag"><i class="fas fa-triangle-exclamation"></i> Error 404</span>
+      <div class="nf-code grad-text">404</div>
+      <h1>This page took a wrong turn</h1>
+      <p>The page you're looking for doesn't exist, or it has moved. Nothing is broken on your side — let's get you somewhere useful.</p>
+
+      <div class="nf-actions">
+        <a href="index.html" class="btn-primary"><i class="fas fa-house"></i> <span>Back to Home</span></a>
+        <a href="projects.html" class="btn-ghost"><i class="fas fa-layer-group"></i> Browse Projects</a>
+      </div>
+
+      <div class="nf-links">
+        <a href="projects.html" class="nf-link glass shine">
+          <i class="fas fa-folder-open"></i>
+          <strong>All Projects</strong>
+          <span>11 systems, from ERP platforms to AI tooling.</span>
+        </a>
+        <a href="index.html#experience" class="nf-link glass shine">
+          <i class="fas fa-briefcase"></i>
+          <strong>Experience</strong>
+          <span>Three years across three companies.</span>
+        </a>
+        <a href="index.html#contact" class="nf-link glass shine">
+          <i class="fas fa-paper-plane"></i>
+          <strong>Get in Touch</strong>
+          <span>Open to new opportunities and collaboration.</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Shekh<span class="grad-text">Manzur</span></div>
+    <p>Full Stack Developer | ERP &amp; Web Solutions Specialist</p>
+    <div class="footer-socials">
+      <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Shekh Manzur Elahi. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- TOASTS (kept so shared scripts have their mount point) -->
+<div id="toasts" aria-live="polite"></div>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="assets/js/projects.js?v=2.1"></script>
+<script defer src="assets/js/main.js?v=2.1"></script>
+</body>
+</html>

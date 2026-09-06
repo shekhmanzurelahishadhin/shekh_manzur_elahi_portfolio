@@ -1,0 +1,26 @@
+# Render Blueprint for this static site.
+#
+# NOTE: this file only takes effect if the service is created/managed as a
+# Render *Blueprint*. A service created by hand in the dashboard keeps using
+# its dashboard settings and ignores this file. It is kept here so the deploy
+# configuration is documented in the repo and reproducible.
+#
+# The settings that matter for this site:
+#   - no build step (plain HTML/CSS/JS, nothing to compile)
+#   - publish path is the repository root, so /assets/** is served as-is
+services:
+  - type: web
+    name: shekh-manzur-elahi-portfolio
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      # Assets are versioned via ?v= in the HTML, so they can cache hard.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
+      # HTML must revalidate, otherwise a deploy won't reach returning visitors.
+      - path: /*.html
+        name: Cache-Control
+        value: no-cache

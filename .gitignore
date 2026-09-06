@@ -1,0 +1,15 @@
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# NOTE: assets/ is part of the site and MUST be committed.
+# Never add it here — the deployed pages load their CSS and JS from it.
