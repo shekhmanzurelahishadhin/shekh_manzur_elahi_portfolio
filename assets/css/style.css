@@ -1515,7 +1515,7 @@
       grid-auto-flow: row;
       transition: opacity 0.7s var(--ease), visibility 0.7s;
     }
-    #preloader.done { opacity: 0; visibility: hidden; }
+    #preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
     .pre-mark {
       width: 66px; height: 66px;
       border-radius: 20px;

@@ -789,7 +789,14 @@
     clearInterval(preTimer);
     preBar.style.width = '100%';
     preText.textContent = 'Welcome';
-    setTimeout(() => preloader.classList.add('done'), 420);
+    setTimeout(() => {
+      preloader.classList.add('done');
+      // Belt and braces: the overlay covers the whole viewport, so if the
+      // fade transition is ever interrupted (or its CSS fails to apply) it
+      // would trap the page behind it. Remove it from the layout outright
+      // once the fade has had time to finish.
+      setTimeout(() => { preloader.style.display = 'none'; }, 900);
+    }, 420);
   }
 
   if (document.readyState === 'complete') finishPreloader();
