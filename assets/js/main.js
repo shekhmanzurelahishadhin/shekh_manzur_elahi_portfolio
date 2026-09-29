@@ -13,7 +13,7 @@
     root.setAttribute('data-theme', theme);
     try { localStorage.setItem('sme-theme', theme); } catch (e) {}
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#07081a' : '#f2f3fb');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0b0a' : '#fafafa');
     if (window.__updateSceneTheme) window.__updateSceneTheme(theme);
   }
 
@@ -159,8 +159,8 @@
 
     // --- Theme-aware colouring ---
     const PALETTE = {
-      dark:  { shapes: [0x8b5cf6, 0x22d3ee, 0xf472b6, 0xfbbf24, 0x8b5cf6, 0x22d3ee], dots: 0xa78bfa, shapeOpacity: 0.16, dotOpacity: 0.34 },
-      light: { shapes: [0x7c3aed, 0x0891b2, 0xdb2777, 0xd97706, 0x7c3aed, 0x0891b2], dots: 0x7c3aed, shapeOpacity: 0.12, dotOpacity: 0.22 }
+      dark:  { shapes: [0x0a90b1, 0x0c7a96, 0x075e73, 0x3fb4ce, 0x0a90b1, 0x0c7a96], dots: 0x3fb4ce, shapeOpacity: 0.14, dotOpacity: 0.28 },
+      light: { shapes: [0x0a90b1, 0x0c7a96, 0x054f63, 0x17a8c7, 0x0a90b1, 0x0c7a96], dots: 0x0a90b1, shapeOpacity: 0.1, dotOpacity: 0.18 }
     };
 
     window.__updateSceneTheme = function (theme) {
@@ -257,28 +257,11 @@
   });
 
   if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+    // A light lift on hover, not a 3D tilt-everything demo effect.
     document.querySelectorAll('.tilt').forEach((el) => {
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        el.style.transform = `perspective(900px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateY(-8px) scale(1.015)`;
-      });
+      el.addEventListener('pointerenter', () => { el.style.transform = 'translateY(-6px)'; });
       el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     });
-
-    // Hero photo card 3D tilt
-    const heroCard = document.getElementById('heroCard');
-    const heroWrap = document.querySelector('.hero-photo-wrap');
-    if (heroCard && heroWrap) {
-      heroWrap.addEventListener('pointermove', (e) => {
-        const r = heroWrap.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        heroCard.style.transform = `rotateX(${(-py * 12).toFixed(2)}deg) rotateY(${(px * 14).toFixed(2)}deg)`;
-      });
-      heroWrap.addEventListener('pointerleave', () => { heroCard.style.transform = ''; });
-    }
   }
 
   /* ========================================================

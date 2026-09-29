@@ -2,80 +2,95 @@
        THEME TOKENS
        ============================================================ */
     :root {
-      --violet: #8b5cf6;
-      --violet-soft: #a78bfa;
-      --cyan: #22d3ee;
-      --amber: #fbbf24;
-      --pink: #f472b6;
-      --radius: 20px;
-      --radius-sm: 14px;
-      --mono: 'Space Mono', monospace;
-      --sans: 'Sora', 'Outfit', sans-serif;
+      /* True neutral gray, not warm-tinted — one accent (#0A90B1) used
+         sparingly, not a rainbow and not an earth-tone wash. */
+      --violet: #0a90b1;
+      --violet-soft: #3fb4ce;
+      --cyan: #0c7a96;
+      --amber: #17a8c7;
+      --pink: #075e73;
+      /* Darker stops of the same hue, reserved for solid fills that carry
+         white text (buttons, active pills) — #0A90B1 itself is only
+         3.7:1 with white, below WCAG AA (4.5:1); these two pass at
+         5.9:1 and 9.1:1. Same value in both themes: white-on-color
+         contrast doesn't depend on the page background. */
+      --fill-1: #086e87;
+      --fill-2: #054f61;
+      --radius: 14px;
+      --radius-sm: 9px;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Inter', 'Sora', sans-serif;
+      --display: 'Space Grotesk', 'Inter', sans-serif;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* DARK (default) */
     html[data-theme="dark"] {
-      --bg: #07081a;
-      --bg2: #0a0c22;
-      --glass: rgba(255, 255, 255, 0.045);
-      --glass-strong: rgba(255, 255, 255, 0.08);
-      --glass-hover: rgba(255, 255, 255, 0.075);
-      --border: rgba(255, 255, 255, 0.10);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --text: #eef0ff;
-      --heading: #ffffff;
-      --muted: #9aa3c7;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
-      --shadow-sm: 0 10px 34px rgba(0, 0, 0, 0.4);
+      --bg: #0a0b0a;
+      --bg2: #101211;
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-strong: rgba(255, 255, 255, 0.075);
+      --glass-hover: rgba(255, 255, 255, 0.065);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #e4e6e5;
+      --heading: #f7f9f8;
+      --muted: #8b9290;
+      --shadow: 0 20px 54px rgba(0, 0, 0, 0.5);
+      --shadow-sm: 0 8px 26px rgba(0, 0, 0, 0.35);
       --grid-line: rgba(255, 255, 255, 0.035);
-      --noise-opacity: 0.5;
-      --glow-1: rgba(139, 92, 246, 0.20);
-      --glow-2: rgba(34, 211, 238, 0.15);
-      --glow-3: rgba(244, 114, 182, 0.12);
-      --orb-1: rgba(139, 92, 246, 0.11);
-      --orb-2: rgba(34, 211, 238, 0.08);
-      --orb-3: rgba(244, 114, 182, 0.07);
+      --noise-opacity: 0.45;
+      --glow-1: rgba(10, 144, 177, 0.16);
+      --glow-2: rgba(12, 122, 150, 0.12);
+      --glow-3: rgba(7, 94, 115, 0.1);
+      --orb-1: rgba(10, 144, 177, 0.09);
+      --orb-2: rgba(12, 122, 150, 0.07);
+      --orb-3: rgba(7, 94, 115, 0.06);
       /* Opaque-enough surfaces for anything that floats OVER content.
          Blur alone can't hide bright text underneath — it smears it. */
-      --float-bg: rgba(11, 13, 32, 0.86);
-      --float-bg-solid: rgba(11, 13, 32, 0.95);
-      --float-border: rgba(255, 255, 255, 0.12);
-      --on-accent: #07081a;
-      --sheen: rgba(255, 255, 255, 0.10);
+      --float-bg: rgba(10, 11, 10, 0.88);
+      --float-bg-solid: rgba(10, 11, 10, 0.96);
+      --float-border: rgba(255, 255, 255, 0.1);
+      --on-accent: #0a0b0a;
+      --sheen: rgba(255, 255, 255, 0.07);
     }
 
     /* LIGHT */
     html[data-theme="light"] {
-      --bg: #f2f3fb;
+      --bg: #fafafa;
       --bg2: #ffffff;
-      --glass: rgba(255, 255, 255, 0.62);
-      --glass-strong: rgba(255, 255, 255, 0.82);
-      --glass-hover: rgba(255, 255, 255, 0.88);
-      --border: rgba(23, 25, 60, 0.10);
-      --border-strong: rgba(23, 25, 60, 0.18);
-      --text: #2b2f52;
-      --heading: #12142e;
-      --muted: #666d94;
-      --shadow: 0 24px 60px rgba(38, 40, 90, 0.12);
-      --shadow-sm: 0 10px 30px rgba(38, 40, 90, 0.09);
-      --grid-line: rgba(23, 25, 60, 0.035);
-      --noise-opacity: 0.25;
-      --glow-1: rgba(139, 92, 246, 0.22);
-      --glow-2: rgba(34, 211, 238, 0.18);
-      --glow-3: rgba(244, 114, 182, 0.14);
-      --orb-1: rgba(139, 92, 246, 0.13);
-      --orb-2: rgba(34, 211, 238, 0.10);
-      --orb-3: rgba(244, 114, 182, 0.08);
-      --float-bg: rgba(255, 255, 255, 0.86);
-      --float-bg-solid: rgba(255, 255, 255, 0.96);
-      --float-border: rgba(23, 25, 60, 0.12);
+      --glass: rgba(15, 18, 17, 0.032);
+      --glass-strong: rgba(15, 18, 17, 0.055);
+      --glass-hover: rgba(15, 18, 17, 0.045);
+      --border: rgba(15, 18, 17, 0.09);
+      --border-strong: rgba(15, 18, 17, 0.17);
+      --text: #383d3b;
+      --heading: #141613;
+      --muted: #6b7370;
+      --shadow: 0 20px 46px rgba(20, 22, 20, 0.1);
+      --shadow-sm: 0 8px 22px rgba(20, 22, 20, 0.08);
+      --grid-line: rgba(15, 18, 17, 0.03);
+      --noise-opacity: 0.22;
+      --glow-1: rgba(10, 144, 177, 0.16);
+      --glow-2: rgba(12, 122, 150, 0.13);
+      --glow-3: rgba(7, 94, 115, 0.1);
+      --orb-1: rgba(10, 144, 177, 0.1);
+      --orb-2: rgba(12, 122, 150, 0.08);
+      --orb-3: rgba(7, 94, 115, 0.06);
+      --float-bg: rgba(255, 255, 255, 0.88);
+      --float-bg-solid: rgba(255, 255, 255, 0.97);
+      --float-border: rgba(15, 18, 17, 0.1);
       --on-accent: #ffffff;
-      --sheen: rgba(255, 255, 255, 0.75);
-      --violet: #7c3aed;
-      --cyan: #0891b2;
-      --amber: #d97706;
-      --pink: #db2777;
+      --sheen: rgba(255, 255, 255, 0.7);
+      /* #0A90B1 alone is only 3.6:1 against this light background —
+         below WCAG AA (4.5:1) for text. Darker stop of the same hue
+         used instead so labels stay legible; the true hex still shows
+         up via --fill-1/2 on buttons and pills. */
+      --violet: #086e87;
+      --violet-soft: #054f61;
+      --cyan: #054f61;
+      --amber: #086e87;
+      --pink: #043744;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -183,40 +198,22 @@
     /* ============================================================
        GLASS PRIMITIVE
        ============================================================ */
+    /* Flat surface, not frosted glass: a plain fill and a 1px border.
+       No blur, no drop shadow by default — those are reserved for things
+       that actually float over content (navbar, modal, toasts). */
     .glass {
-      background: var(--glass);
-      backdrop-filter: blur(22px) saturate(160%);
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      background: var(--glass-strong);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-sm), inset 0 1px 0 var(--sheen);
+      transition: border-color 0.2s var(--ease);
     }
 
-    /* animated gradient hairline on top of glass cards */
-    .glass::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 12%; right: 12%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--violet), var(--cyan), transparent);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    /* mouse-follow sheen */
-    .shine::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 50%), var(--sheen), transparent 65%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .shine:hover::before { opacity: 1; }
+    /* .shine is now a no-op kept only so existing markup doesn't need
+       editing — the cursor-follow spotlight read as a stock SaaS-template
+       gimmick and has been removed. */
+    .shine:hover { border-color: var(--border-strong); }
     .shine > * { position: relative; z-index: 1; }
 
     /* ============================================================
@@ -231,8 +228,8 @@
       width: calc(100% - 40px);
       max-width: 1140px;
       background: var(--float-bg);
-      backdrop-filter: blur(24px) saturate(170%);
-      -webkit-backdrop-filter: blur(24px) saturate(170%);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
       border: 1px solid var(--float-border);
       border-radius: 22px;
       padding: 0 0.9rem 0 1.2rem;
@@ -257,7 +254,7 @@
     .nav-logo-icon {
       width: 38px; height: 38px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       display: flex; align-items: center; justify-content: center;
       font-family: var(--mono);
       font-size: 0.8rem; font-weight: 700;
@@ -269,7 +266,7 @@
     @keyframes logoFloat { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-3px) rotate(-4deg); } }
 
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
-    .nav-logo-name { font-size: 0.95rem; font-weight: 700; color: var(--heading); white-space: nowrap; }
+    .nav-logo-name { font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--heading); white-space: nowrap; }
     .nav-logo-name span { background: linear-gradient(90deg, var(--violet), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .nav-logo-title { font-family: var(--mono); font-size: 0.58rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
 
@@ -304,7 +301,7 @@
 
     .nav-cta {
       display: inline-flex; align-items: center; gap: 0.45rem;
-      background: linear-gradient(135deg, var(--violet), var(--cyan)) !important;
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2)) !important;
       color: #fff !important;
       padding: 0.5rem 1.1rem !important;
       border-radius: 999px !important;
@@ -376,8 +373,8 @@
       width: calc(100% - 40px);
       max-width: 1140px;
       background: var(--float-bg-solid);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      backdrop-filter: blur(16px) saturate(150%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
       border: 1px solid var(--float-border);
       border-radius: 22px;
       padding: 1.1rem 1.2rem;
@@ -412,7 +409,7 @@
     .drawer-bottom { display: flex; gap: 0.7rem; padding-top: 0.4rem; }
     .drawer-bottom a { flex: 1; justify-content: center; font-size: 0.85rem !important; padding: 0.75rem !important; }
     .drawer-cta {
-      background: linear-gradient(135deg, var(--violet), var(--cyan)) !important;
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2)) !important;
       color: #fff !important;
     }
     .drawer-cta i { color: #fff !important; }
@@ -437,7 +434,6 @@
       padding: 0.35rem 0.9rem;
       border-radius: 999px;
       margin-bottom: 1rem;
-      backdrop-filter: blur(10px);
     }
     html[data-theme="light"] .sec-label { color: var(--violet); }
     .sec-label::before {
@@ -448,25 +444,23 @@
     }
 
     .sec-title {
+      font-family: var(--display);
       font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.08;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
       color: var(--heading);
       text-wrap: balance;
     }
 
     /* anchors land below the floating navbar */
     section[id], header[id] { scroll-margin-top: 100px; }
+    /* One flat accent color, not an animated rainbow — used sparingly
+       as the single "this word matters" signal on a page. */
     .grad-text {
-      background: linear-gradient(100deg, var(--violet), var(--cyan) 45%, var(--pink) 85%);
-      background-size: 220% auto;
-      -webkit-background-clip: text; background-clip: text;
-      color: transparent;
-      animation: gradShift 7s linear infinite;
+      color: var(--violet);
+      font-style: normal;
     }
-    @keyframes gradShift { to { background-position: 220% center; } }
-
     .sec-sub { color: var(--muted); max-width: 620px; margin-top: 0.9rem; font-size: 0.98rem; text-wrap: pretty; }
     .sec-head.center .sec-sub { margin-left: auto; margin-right: auto; }
 
@@ -485,14 +479,13 @@
       display: grid;
       grid-template-columns: 1.15fr auto;
       gap: 4.5rem;
-      align-items: center;
+      align-items: start;
     }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.55rem;
       background: var(--glass);
       border: 1px solid var(--border);
-      backdrop-filter: blur(14px);
       border-radius: 999px;
       padding: 0.4rem 1.05rem;
       font-family: var(--mono);
@@ -513,10 +506,11 @@
     }
 
     .hero-name {
-      font-size: clamp(2.7rem, 7.2vw, 5.4rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.042em;
+      font-family: var(--display);
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
       color: var(--heading);
       margin-bottom: 0.9rem;
       text-wrap: balance;
@@ -564,7 +558,7 @@
     .btn-primary {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       color: #fff;
       font-weight: 600; font-size: 0.9rem;
       padding: 0.9rem 2rem;
@@ -578,7 +572,7 @@
     .btn-primary::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--cyan), var(--pink));
+      background: linear-gradient(135deg, var(--fill-2), var(--pink));
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -589,7 +583,6 @@
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--glass);
-      backdrop-filter: blur(14px);
       color: var(--text);
       font-weight: 600; font-size: 0.9rem;
       padding: 0.9rem 2rem;
@@ -606,7 +599,6 @@
       border-radius: 14px;
       border: 1px solid var(--border);
       background: var(--glass);
-      backdrop-filter: blur(12px);
       display: grid; place-items: center;
       color: var(--muted);
       text-decoration: none; font-size: 1rem;
@@ -620,133 +612,88 @@
       box-shadow: 0 12px 28px var(--glow-1);
     }
 
-    /* HERO PHOTO CARD */
-
-    /* Registering the angle lets us animate the CONIC GRADIENT itself.
-       The previous version rotated the element, which swung its corners
-       outside the photo and produced stray coloured diamonds. */
-    @property --ring-angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-
-    .hero-photo-wrap { perspective: 1200px; position: relative; }
-
-    .hero-photo-ring {
-      --ring-angle: 0deg;
+    /* HERO PHOTO — an offset flat-color block behind a hard-edged frame
+       (a print-design move), not a glass card with a spinning ring.
+       No blur, no conic gradient, no floating animation on the frame. */
+    .hero-photo-wrap {
       position: relative;
-      width: 340px; height: 420px;
-      padding: 9px;
-      border-radius: 30px;
-      background: var(--glass);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-      box-shadow: var(--shadow), inset 0 1px 0 var(--sheen);
-      transform-style: preserve-3d;
-      transition: transform 0.3s var(--ease);
-      animation: floatCard 7s ease-in-out infinite;
+      width: 320px;
+      margin-top: 2.6rem;
     }
-    @keyframes floatCard { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
 
-    /* Gradient hairline ring: a masked border, so nothing can overhang. */
-    .hero-photo-ring::before {
+    .hero-photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      z-index: 1;
+    }
+    .hero-photo-frame::before {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      padding: 1.5px;
-      background: conic-gradient(from var(--ring-angle),
-        var(--violet), var(--cyan), var(--pink), var(--amber), var(--violet));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      animation: ringSpin 9s linear infinite;
-      pointer-events: none;
-      z-index: 2;
-    }
-    @keyframes ringSpin { to { --ring-angle: 360deg; } }
-
-    /* Soft bloom behind the card. A blurred circle, so it never shows edges. */
-    .hero-photo-ring::after {
-      content: '';
-      position: absolute;
-      inset: 6%;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--glow-1), transparent 70%);
-      filter: blur(52px);
-      opacity: 0.85;
+      transform: translate(14px, 14px);
+      background: var(--violet);
+      border-radius: var(--radius-sm);
       z-index: -1;
-      pointer-events: none;
     }
-
-    .hero-photo-ring img {
-      position: relative;
-      z-index: 1;
+    .hero-photo-frame img {
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center top;
-      border-radius: 22px;
       display: block;
-      transform: translateZ(28px);
-      transition: transform 0.5s var(--ease);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
     }
-    .hero-photo-wrap:hover .hero-photo-ring img { transform: translateZ(28px) scale(1.02); }
 
-    /* Floating stat badges */
-    .hero-stat-badge {
+    /* small print-style tag cutting into the frame's top edge */
+    .hero-photo-tag {
       position: absolute;
+      top: -13px; left: 24px;
+      z-index: 2;
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* stat row sits below the frame, plain — not floating pills on the photo */
+    .hero-stat-row {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      background: var(--float-bg-solid);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--float-border);
-      border-radius: 16px;
-      padding: 0.7rem 1rem;
-      z-index: 4;
-      box-shadow: var(--shadow);
-      transform: translateZ(70px);
-      transition: transform 0.4s var(--ease);
+      gap: 1.6rem;
+      margin-top: 1.8rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
     }
-    .hero-stat-badge i {
-      width: 30px; height: 30px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      display: grid; place-items: center;
-      font-size: 0.72rem;
-      color: #fff;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
-    }
-    .hero-stat-badge .stat-num {
+    .hero-stat-row .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-row .stat-num {
       font-family: var(--mono);
-      font-size: 1.2rem; font-weight: 700;
-      line-height: 1;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--heading);
+      line-height: 1;
     }
-    .hero-stat-badge .stat-lbl {
-      font-size: 0.68rem;
+    .hero-stat-row .stat-lbl {
+      font-size: 0.72rem;
       color: var(--muted);
-      margin-top: 3px;
+      margin-top: 0.35rem;
       white-space: nowrap;
     }
-    .badge-tl { top: 26px; left: -46px; }
-    .badge-br { bottom: 26px; right: -46px; }
-
-    /* keep the badges clear of the viewport edge on narrow desktops */
-    @media (max-width: 1100px) {
-      .badge-tl { left: -20px; }
-      .badge-br { right: -20px; }
+    .hero-stat-row .hero-stat-divider {
+      width: 1px;
+      align-self: stretch;
+      background: var(--border);
     }
 
     @media (max-width: 480px) {
-      .badge-tl { left: -8px; }
-      .badge-br { right: -8px; }
-      .hero-stat-badge { padding: 0.55rem 0.8rem; gap: 0.55rem; }
-      .hero-stat-badge i { width: 26px; height: 26px; }
-      .hero-stat-badge .stat-num { font-size: 1.05rem; }
+      .hero-photo-wrap { width: 250px; }
+      .hero-photo-frame::before { transform: translate(10px, 10px); }
+      .hero-stat-row { gap: 1.2rem; margin-top: 1.4rem; padding-top: 1.2rem; }
     }
     /* Scroll cue */
     .scroll-cue {
@@ -787,7 +734,6 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--glass);
-      backdrop-filter: blur(14px);
       mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
     }
@@ -893,7 +839,7 @@
       padding: 1.9rem;
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
     }
-    .focus-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .focus-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
     .focus-card .ico {
       width: 50px; height: 50px;
       border-radius: 16px;
@@ -927,7 +873,7 @@
       text-align: center;
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
     }
-    .core-tile:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .core-tile:hover { transform: translateY(-2px); border-color: var(--border-strong); }
     .core-tile .ico {
       width: 52px; height: 52px;
       margin: 0 auto 0.9rem;
@@ -986,7 +932,7 @@
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
       transform-style: preserve-3d;
     }
-    .skill-planet:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .skill-planet:hover { border-color: var(--border-strong); }
 
     .skill-planet .blob {
       position: absolute;
@@ -1112,7 +1058,7 @@
     .tl-item:hover::before { transform: scale(1.2); }
 
     .tl-card { padding: 1.9rem; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s; }
-    .tl-card:hover { transform: translateX(8px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .tl-card:hover { transform: translateX(3px); border-color: var(--border-strong); }
 
     /* header: company mark + role + meta */
     .xp-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.15rem; }
@@ -1125,7 +1071,7 @@
       font-size: 0.85rem;
       font-weight: 700;
       color: #fff;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       box-shadow: 0 8px 20px var(--glow-1);
     }
     .xp-headings { flex: 1; min-width: 0; }
@@ -1209,7 +1155,6 @@
     .proj-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.2rem; flex-wrap: wrap; }
     .proj-tab {
       background: var(--glass);
-      backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       color: var(--muted);
       padding: 0.55rem 1.25rem;
@@ -1221,7 +1166,7 @@
     }
     .proj-tab:hover { color: var(--heading); border-color: var(--border-strong); transform: translateY(-2px); }
     .proj-tab.active {
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       border-color: transparent; color: #fff;
       box-shadow: 0 8px 22px var(--glow-1);
     }
@@ -1233,7 +1178,7 @@
       transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.4s, opacity 0.35s;
       transform-style: preserve-3d;
     }
-    .proj-card:hover { box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .proj-card:hover { border-color: var(--border-strong); }
 
     .proj-banner {
       height: 148px;
@@ -1270,6 +1215,7 @@
     .pb-9 { background: linear-gradient(135deg, rgba(168,85,247,0.18), transparent); color: #a855f7; }
     .pb-10 { background: linear-gradient(135deg, rgba(99,102,241,0.18), transparent); color: #6366f1; }
     .pb-11 { background: linear-gradient(135deg, rgba(234,88,12,0.18), transparent); color: #ea580c; }
+    .pb-12 { background: linear-gradient(135deg, rgba(234,179,8,0.18), transparent); color: #eab308; }
 
     .proj-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
     .proj-body h3 { font-size: 1.02rem; font-weight: 700; color: var(--heading); margin-bottom: 0.5rem; line-height: 1.4; letter-spacing: -0.01em; text-wrap: balance; }
@@ -1288,7 +1234,7 @@
       transition: all 0.25s var(--ease);
     }
     .proj-links a:hover {
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       border-color: transparent; color: #fff;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px var(--glow-1);
@@ -1307,7 +1253,7 @@
       flex-direction: column;
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s;
     }
-    .edu-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .edu-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
 
     .edu-top {
       display: flex;
@@ -1402,7 +1348,7 @@
 
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 3rem; }
     .cert-card { padding: 1.5rem; display: flex; align-items: center; gap: 1.15rem; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
-    .cert-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-sm); }
+    .cert-card:hover { border-color: var(--border-strong); }
     .cert-card-icon {
       width: 50px; height: 50px;
       border-radius: 15px;
@@ -1417,7 +1363,7 @@
 
     .activity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
     .activity-card { padding: 1.9rem; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s; }
-    .activity-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--border-strong); }
+    .activity-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
     .activity-card h3 { font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.7rem; }
     .activity-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.8rem; }
     .activity-card a {
@@ -1505,9 +1451,8 @@
       position: relative;
       z-index: 1;
       background: var(--glass);
-      backdrop-filter: blur(16px);
     }
-    .footer-logo { font-family: var(--mono); font-size: 1.45rem; font-weight: 700; color: var(--heading); margin-bottom: 0.5rem; }
+    .footer-logo { font-family: var(--display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--heading); margin-bottom: 0.5rem; }
     footer > .container > p { font-size: 0.87rem; color: var(--muted); margin-bottom: 1.5rem; }
     .footer-socials { display: flex; justify-content: center; gap: 0.7rem; margin-bottom: 2rem; }
     .footer-socials a {
@@ -1579,7 +1524,7 @@
     .pre-mark {
       width: 66px; height: 66px;
       border-radius: 20px;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       display: grid; place-items: center;
       font-family: var(--mono); font-weight: 700; font-size: 1.15rem;
       color: #fff;
@@ -1627,7 +1572,7 @@
       letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--muted);
       background: var(--float-bg-solid);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--float-border);
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
@@ -1699,7 +1644,7 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 3000;
-      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      background: linear-gradient(135deg, var(--fill-1), var(--fill-2));
       color: #fff;
       font-size: 0.85rem;
       font-weight: 600;
@@ -1757,7 +1702,6 @@
     .proj-search input {
       width: 100%;
       background: var(--glass);
-      backdrop-filter: blur(14px);
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 0.6rem 2.4rem 0.6rem 2.5rem;
@@ -1962,8 +1906,8 @@
       padding: 0.85rem 1.2rem;
       border-radius: 15px;
       background: var(--float-bg-solid);
-      backdrop-filter: blur(22px) saturate(180%);
-      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
       border: 1px solid var(--float-border);
       box-shadow: var(--shadow);
       font-size: 0.87rem;
@@ -2034,8 +1978,7 @@
       .nav-hamburger { display: flex; }
       #navbar.scrolled { max-width: none; }
       .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-photo-wrap { display: flex; justify-content: center; order: -1; }
-      .hero-photo-ring { width: 260px; height: 310px; }
+      .hero-photo-wrap { display: flex; flex-direction: column; align-items: center; order: -1; width: 260px; margin-top: 0; margin-left: auto; margin-right: auto; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .edu-grid, .activity-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -2061,8 +2004,6 @@
       .stat-tile .n { font-size: 1.4rem; }
       .contact-form-card, .contact-info-card { padding: 1.7rem; }
       .tl-card { padding: 1.5rem; }
-      .badge-tl { left: -12px; }
-      .badge-br { right: -12px; }
       #navbar { padding: 0 0.7rem 0 0.9rem; }
       .nav-logo-title { display: none; }
       .modal-panel { padding: 1.6rem; max-height: 88vh; }

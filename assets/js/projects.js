@@ -6,27 +6,49 @@
    ============================================================ */
 window.PROJECT_DATA = [
   {
+    key: 'erp',
+    cat: 'laravel fullstack',
+    tone: 'pb-1',
+    icon: 'fa-cubes',
+    title: 'ERP & VMS Systems',
+    blurb: 'ERP and Vendor Management modules for Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more — HRM, Finance, Inventory and CRM built on Laravel and Yii2 against MySQL and SQL Server.',
+    chips: ['Laravel', 'Yii2', 'SQL Server', 'MySQL'],
+    role: 'Software Engineer · Multibrand Group',
+    desc: 'A family of ERP and Vendor Management modules delivered for Multibrand Group companies — Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more — spanning manufacturing, metal trading and retail, each tailored to the client\'s workflow but sharing a common role-based core.',
+    points: [
+      'Delivered for Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more',
+      'Modules covering HRM, Payroll, Finance, Inventory, CRM and Project Management',
+      'Built on Laravel and Yii2 against both MySQL and SQL Server backends',
+      'Stored procedures keep heavy reporting queries fast at scale',
+      'Cron jobs and database triggers automate reporting, data sync and notifications',
+      'Granular role and permission layer so each department sees only its own data'
+    ],
+    stack: ['Laravel', 'Yii2', 'PHP', 'SQL Server', 'MySQL', 'Stored Procedures', 'Cron Jobs'],
+    links: []
+  },
+  {
     key: 'resumematch',
     cat: 'ai nextjs react laravel fullstack',
     tone: 'pb-9',
     icon: 'fa-wand-magic-sparkles',
     title: 'AI Resume Matchmaker',
-    blurb: 'AI-powered resume ↔ job matching platform. Job seekers upload PDF resumes and get compatibility scores against job descriptions, while recruiters post jobs and receive ranked, scored candidate lists.',
-    chips: ['Laravel 12', 'Next.js 16', 'TypeScript', 'Hugging Face', 'Redis'],
-    role: 'Full Stack Developer · Laravel 12 + Next.js 16',
-    desc: 'An AI-powered resume ↔ job matching platform with two audiences in one system. Job seekers upload PDF resumes and receive compatibility scores against job descriptions; recruiters post jobs and get back ranked, scored candidate lists.',
+    blurb: 'A full AI-powered hiring platform. Job seekers get a match score against every open job and can build a resume with AI assistance; recruiters get ranked candidates, an applicant pipeline and built-in messaging.',
+    chips: ['Laravel 11', 'Next.js 16', 'TypeScript', 'Groq', 'TanStack Query'],
+    role: 'Full Stack Developer · Laravel 11 + Next.js 16',
+    desc: 'An AI-powered resume ↔ job matching platform that has grown into a small hiring platform. Job seekers get a 0–100% match score for every open job with matched and missing skills, plus an AI-assisted resume builder; recruiters get ranked candidates, an applicant pipeline and direct messaging — all behind light and dark themes, responsive down to phone width.',
     points: [
-      'Laravel 12 / PHP 8.3 REST API paired with a Next.js 16 App Router frontend in TypeScript',
-      'Resume ↔ job scoring through the Hugging Face Inference API, with a deterministic fallback when the model is unavailable',
-      'Sanctum authentication supporting both bearer tokens and session cookies',
-      'Resume generation across six templates with HTML, PDF and DOCX output',
-      'Queued jobs handle parsing, matching and notifications; a scheduler sends daily digests',
-      'Push notifications via Firebase Cloud Messaging with an email fallback',
-      'Tiered rate limiting — 60 requests/min, 5 uploads/hr, 10 generations/hr',
-      'GDPR data export and account deletion built in',
-      'Redis caching, pagination and eager loading throughout; covered by PHPUnit and Vitest suites'
+      'Laravel 11 / PHP 8.2 REST API (67 endpoints) paired with a Next.js 16 App Router frontend in TypeScript',
+      'Resume parsing and job matching through Groq and Hugging Face, with a dictionary-based fallback when neither is available',
+      'AI resume builder: 8 themed templates, live preview, AI enhance/tailor, version history, and PDF/DOCX/HTML export',
+      'Recruiters see structured candidate profiles built from the parsed data — never the raw resume text',
+      'Full application lifecycle: apply, track status, and a recruiter-side pipeline to move candidates through stages',
+      'In-app messaging between recruiters and matched candidates, plus a notification center',
+      'Push notifications via Firebase Cloud Messaging with a scheduled email digest fallback',
+      'Dashboards with animated stat counters for both seekers and recruiters',
+      'Light/dark theme with next-themes, fully responsive to phone width',
+      'TanStack Query and Table on the frontend; react-hook-form with zod validation; shadcn/ui on Radix primitives'
     ],
-    stack: ['Laravel 12', 'PHP 8.3', 'Next.js 16', 'TypeScript', 'MySQL', 'Redis', 'Hugging Face', 'Sanctum', 'Firebase FCM', 'S3 / MinIO'],
+    stack: ['Laravel 11', 'PHP 8.2', 'Next.js 16', 'React 19', 'TypeScript', 'MySQL', 'Redis', 'Groq', 'Hugging Face', 'Sanctum', 'Firebase FCM', 'AWS S3'],
     links: [{ href: 'https://github.com/shekhmanzurelahishadhin/ai_resume_match_maker', icon: 'fab fa-github', label: 'GitHub' }]
   },
   {
@@ -34,21 +56,22 @@ window.PROJECT_DATA = [
     cat: 'nextjs react laravel fullstack',
     tone: 'pb-8',
     icon: 'fa-city',
-    title: 'RealEstate Studio',
-    blurb: 'A headless real-estate showcase platform — an animated Next.js 16 frontend for properties, projects and services, driven entirely by a Laravel REST API with a fully manageable content backend.',
-    chips: ['Next.js 16', 'React 19', 'TypeScript', 'Laravel', 'GSAP'],
-    role: 'Full Stack Developer · Next.js 16 + Laravel',
-    desc: 'A headless real-estate showcase platform. An animated Next.js frontend presents properties, projects and services, while every piece of content — listings, testimonials, stats, process steps and site settings — is served from a Laravel REST API.',
+    title: 'Meridian — Real Estate Studio',
+    blurb: 'A cinematic Next.js 16 real-estate marketing site, server-rendered with ISR against a Laravel 12 API — plus a hand-written Blade admin panel for managing every piece of content, no Filament.',
+    chips: ['Next.js 16', 'Laravel 12', 'TypeScript', 'GSAP', 'Tailwind v4'],
+    role: 'Full Stack Developer · Next.js 16 + Laravel 12',
+    desc: 'A full-stack real-estate studio site: a cinematic Next.js 16 frontend driven entirely by a Laravel 12 REST API, with a custom Blade admin panel (styled after Horizon UI) for managing every piece of content — no Filament involved.',
     points: [
-      'Decoupled architecture: Next.js 16 App Router frontend consuming a Laravel API',
-      'React 19 with TypeScript, styled in Tailwind CSS',
-      'Motion work handled by GSAP and Framer Motion for scroll and transition animation',
-      'Dynamic detail routes for individual properties and projects',
-      'Nine Eloquent models covering properties, projects, services, testimonials, process steps, stats and settings',
-      'Image upload endpoint plus a contact-message pipeline',
-      'Sanctum-secured API with content fully manageable from the backend'
+      'Every page is server-rendered and pulled from the API with ISR (revalidate: 60), not client-fetched',
+      'GSAP-pinned horizontal scrolling, scroll-reveal animation, and a lazily-loaded hero video',
+      'Light/dark theme applied pre-paint by an inline script — no flash on load — with the whole palette defined as CSS custom properties mapped through Tailwind v4\'s @theme inline',
+      'Hero video only loads on desktop, with motion allowed, on a 4G+ connection without data-saver; a poster image stands in otherwise',
+      'Featured-work rail becomes a swipeable, scroll-snapped carousel on phones',
+      'A custom useInViewOnce hook (native IntersectionObserver) replaces framer-motion\'s broken whileInView in v13',
+      'The backend is a hand-written Blade + Tailwind admin panel managing Properties, Projects, Services, Process Steps, Stats, Testimonials, Messages and global Site Settings',
+      'Nine Eloquent models; images upload to local storage and are resolved to absolute URLs at the API boundary'
     ],
-    stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Framer Motion', 'Laravel', 'Sanctum', 'MySQL'],
+    stack: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind v4', 'GSAP', 'Framer Motion', 'Laravel 12', 'Blade', 'MySQL'],
     links: [{ href: 'https://github.com/shekhmanzurelahishadhin/realestead-studio', icon: 'fab fa-github', label: 'GitHub' }]
   },
   {
@@ -129,25 +152,30 @@ window.PROJECT_DATA = [
     links: [{ private: true, icon: 'fas fa-lock', label: 'Private Repo' }]
   },
   {
-    key: 'erp',
+    key: 'fleet',
     cat: 'laravel fullstack',
-    tone: 'pb-1',
-    icon: 'fa-cubes',
-    title: 'ERP & VMS Systems',
-    blurb: 'Developed ERP modules for HRM, Finance, Inventory, and CRM using Laravel and Yii2, integrated with MySQL and SQL Server across various industries.',
-    chips: ['Laravel', 'Yii2', 'SQL Server', 'MySQL'],
+    tone: 'pb-12',
+    icon: 'fa-truck-fast',
+    title: 'Fleet Management System',
+    blurb: 'A vehicle-fleet ERP covering the full asset lifecycle — procurement, documents, workshop repair estimates, fuel, trips and route planning, through to disposal by auction. 70+ models across 12 modules.',
+    chips: ['Laravel', 'Spatie Permission', 'Yajra DataTables', 'PhpSpreadsheet', 'Alpine.js'],
     role: 'Software Engineer · Multibrand Group',
-    desc: 'A family of ERP and Vendor Management modules built for companies across manufacturing, retail and services — each tailored to the client\'s workflow but sharing a common role-based core.',
+    desc: 'A comprehensive Laravel fleet-management ERP built around the full life of a vehicle: purchase, registration and documents, day-to-day trips and fuel, workshop repairs with an estimate approval workflow, and eventual disposal by auction — all under company/department-scoped role-based access.',
     points: [
-      'Modules delivered for HRM, Payroll, Finance, Inventory, CRM and Project Management',
-      'Built on Laravel and Yii2 against both MySQL and SQL Server backends',
-      'Stored procedures keep heavy reporting queries fast at scale',
-      'Cron jobs and database triggers automate reporting, data sync and notifications',
-      'Granular role and permission layer so each department sees only its own data'
+      'Vehicle core: brand/model/type catalogue, ownership, transfer and receipt records, plus document tracking (registration, tax, fitness) with expiry-driven service reminders',
+      'Workshop repair estimates — parts, sublet work and service charges are itemised and routed through an approval workflow before billing',
+      'Complaint handling with category/sub-category/head classification feeding into work requisitions and vehicle inspections',
+      'Fuel management: per-station issue tracking, price setup and mileage logs for consumption reporting',
+      'Trip and route planning — usage requisitions with linked vehicles and trips, route locations, transport-facility requests and passenger manifests',
+      'Procurement through disposal: purchase orders tied to specific vehicles, supplier and product catalogues, and an auction module (declare, bid, bidder) for retiring assets',
+      'Billing and budgeting with cost centres, expense heads, configurable voucher prefixes, and dedicated expense/pool/VMS/workshop reports',
+      'Company, department, division and designation hierarchy with Spatie roles/permissions plus a separate per-unit access-approval layer',
+      'Server-side DataTables throughout for large fleet datasets; Excel import/export via PhpSpreadsheet'
     ],
-    stack: ['Laravel', 'Yii2', 'PHP', 'SQL Server', 'MySQL', 'Stored Procedures', 'Cron Jobs'],
-    links: []
+    stack: ['Laravel', 'PHP', 'Spatie Permission', 'Yajra DataTables', 'PhpSpreadsheet', 'MySQL', 'Tailwind', 'Bootstrap', 'Alpine.js', 'jQuery'],
+    links: [{ private: true, icon: 'fas fa-lock', label: 'Private Repo' }]
   },
+
   {
     key: 'landport',
     cat: 'laravel fullstack',
