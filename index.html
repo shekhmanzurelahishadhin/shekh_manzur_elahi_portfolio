@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Shekh Manzur Elahi — Full Stack Web Developer specialising in Laravel, ERP systems, React.js and database engineering."/>
-  <meta name="theme-color" content="#0a0b0a"/>
+  <meta name="theme-color" content="#060d14"/>
   <meta name="author" content="Shekh Manzur Elahi"/>
   <title>Shekh Manzur Elahi | Full Stack Developer</title>
   <link rel="canonical" href="https://shekhmanzurelahi.com/"/>
@@ -33,13 +33,13 @@
     html { color-scheme: dark light; }
     body {
       margin: 0;
-      background: #0a0b0a;
-      color: #e4e6e5;
+      background: #060d14;
+      color: #dfeaf0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    html[data-theme="light"] body { background: #fafafa; color: #383d3b; }
+    html[data-theme="light"] body { background: #f2f7fa; color: #2b3a44; }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css?v=4.2"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=5.5"/>
 
   <script type="application/ld+json">
   {
@@ -182,16 +182,17 @@
           <span class="hero-photo-tag">Dhaka, BD</span>
           <img src="https://i.ibb.co.com/JWLKcVQy/ee.png" alt="Shekh Manzur Elahi"/>
         </div>
-        <div class="hero-stat-row">
-          <div class="hero-stat">
-            <span class="stat-num" data-count="3" data-suffix="+">3+</span>
-            <span class="stat-lbl">Years Exp.</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div class="hero-stat">
-            <span class="stat-num" data-count="10" data-suffix="+">10+</span>
-            <span class="stat-lbl">Modules Built</span>
-          </div>
+        <div class="hero-badge-float hb-1">
+          <span class="stat-num" data-count="3" data-suffix="+">3+</span>
+          <span class="stat-lbl">Years Experience</span>
+        </div>
+        <div class="hero-badge-float hb-2">
+          <span class="stat-num" data-count="12" data-suffix="+">12+</span>
+          <span class="stat-lbl">Projects Delivered</span>
+        </div>
+        <div class="hero-badge-float hb-3">
+          <span class="stat-num" data-count="10" data-suffix="+">10+</span>
+          <span class="stat-lbl">ERP Modules Built</span>
         </div>
       </div>
     </div>
@@ -461,48 +462,62 @@
       </div>
     </div>
 
-    <div class="timeline">
-
-      <div class="tl-item current reveal">
-        <div class="tl-card glass shine">
-          <div class="xp-head">
-            <div class="xp-mark">MG</div>
-            <div class="xp-headings">
-              <div class="tl-role">Software Engineer</div>
-              <div class="tl-company"><b>Multibrand Group</b> · Dhaka, Bangladesh</div>
-              <div class="tl-meta">
-                <span class="tl-now">Current</span>
-                <span class="tl-date">Apr 2024 — Present</span>
-                <span class="tl-dur" data-from="2024-04"></span>
-              </div>
-            </div>
-          </div>
-          <ul class="tl-list">
-            <li>Developed and maintained multiple ERP solutions across industries using Laravel, React JS, and Yii2</li>
-            <li>Designed complex database systems in SQL Server and MySQL, leveraging stored procedures for optimized queries</li>
-            <li>Implemented cron jobs &amp; triggers for automated tasks such as reporting, data sync, and notifications</li>
-            <li>Led full-stack development on modules like HRM, Payroll, Inventory, and Project Management</li>
-            <li>Collaborated with cross-functional teams for deployment, testing, and client feedback</li>
-          </ul>
-          <div class="xp-tech">
-            <span>Laravel</span><span>React.js</span><span>Yii2</span><span>SQL Server</span>
-            <span>MySQL</span><span>Stored Procedures</span><span>Cron Jobs</span><span>RBAC</span>
-          </div>
-        </div>
+    <div class="xp-tabs reveal">
+      <div class="xp-tablist" role="tablist" aria-label="Work experience">
+        <button class="xp-tab active" role="tab" id="xp-tab-1" aria-controls="xp-panel-1" aria-selected="true" data-from="2024-04">
+          <span class="xp-mark">MG</span>
+          <span class="xp-tab-text">
+            <strong>Multibrand Group</strong>
+            <small>Apr 2024 — Present</small>
+          </span>
+        </button>
+        <button class="xp-tab" role="tab" id="xp-tab-2" aria-controls="xp-panel-2" aria-selected="false" tabindex="-1" data-from="2023-02" data-to="2024-03">
+          <span class="xp-mark">PN</span>
+          <span class="xp-tab-text">
+            <strong>PeopleNTech Ltd</strong>
+            <small>Feb 2023 — Mar 2024</small>
+          </span>
+        </button>
+        <button class="xp-tab" role="tab" id="xp-tab-3" aria-controls="xp-panel-3" aria-selected="false" tabindex="-1" data-from="2022-11" data-to="2023-01">
+          <span class="xp-mark">TW</span>
+          <span class="xp-tab-text">
+            <strong>Tecweb BD IT</strong>
+            <small>Nov 2022 — Jan 2023</small>
+          </span>
+        </button>
       </div>
 
-      <div class="tl-item reveal">
-        <div class="tl-card glass shine">
-          <div class="xp-head">
-            <div class="xp-mark">PN</div>
-            <div class="xp-headings">
-              <div class="tl-role">Jr Programmer <span style="font-weight:500;color:var(--muted);font-size:0.85rem;">(Project Base)</span></div>
-              <div class="tl-company"><b>PeopleNTech Ltd</b> · Dhaka, Bangladesh</div>
-              <div class="tl-meta">
-                <span class="tl-date">Feb 2023 — Mar 2024</span>
-                <span class="tl-dur" data-from="2023-02" data-to="2024-03"></span>
-              </div>
-            </div>
+      <div class="xp-panels">
+        <article class="xp-panel glass" role="tabpanel" id="xp-panel-1" aria-labelledby="xp-tab-1">
+          <span class="xp-panel-index">01</span>
+          <div class="tl-role">Software Engineer</div>
+          <div class="tl-company"><b>Multibrand Group</b> · Dhaka, Bangladesh</div>
+          <div class="tl-meta">
+            <span class="tl-now">Current</span>
+            <span class="tl-date">Apr 2024 — Present</span>
+            <span class="tl-dur" data-from="2024-04"></span>
+          </div>
+          <ul class="tl-list">
+            <li>Build and maintain ERP and Vendor Management systems for group companies — Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and more — covering HRM, Payroll, Finance, Inventory and CRM on Laravel and Yii2</li>
+            <li>Developing a Fleet Management System for the full vehicle lifecycle — documents, fuel, trips and route planning, workshop repair estimates with an approval workflow, through to disposal by auction</li>
+            <li>Building Asset ERP, a workshop asset and tool management system — a Laravel 11 API with 320+ endpoints behind a Next.js 16 admin, covering purchase requests, assignment, transfer approvals, maintenance, depreciation and disposal</li>
+            <li>Built MDDL, a double-entry accounting system — chart of accounts, journal vouchers, cheque lifecycle, cost centres and multi-currency — deployed with Docker</li>
+            <li>Delivered an all-in-one work management platform — tasks, sprints, tickets and 25+ reports — with seven role-specific dashboards</li>
+            <li>Design SQL Server and MySQL schemas with stored procedures, triggers and cron jobs to keep reporting fast, plus company-scoped role-based access so each department sees only its own data</li>
+          </ul>
+          <div class="xp-tech">
+            <span>Laravel</span><span>Next.js</span><span>React.js</span><span>Yii2</span><span>SQL Server</span>
+            <span>MySQL</span><span>Stored Procedures</span><span>Spatie RBAC</span><span>Cron Jobs</span><span>Docker</span>
+          </div>
+        </article>
+
+        <article class="xp-panel glass" role="tabpanel" id="xp-panel-2" aria-labelledby="xp-tab-2">
+          <span class="xp-panel-index">02</span>
+          <div class="tl-role">Jr Programmer <span class="tl-role-note">(Project Base)</span></div>
+          <div class="tl-company"><b>PeopleNTech Ltd</b> · Dhaka, Bangladesh</div>
+          <div class="tl-meta">
+            <span class="tl-date">Feb 2023 — Mar 2024</span>
+            <span class="tl-dur" data-from="2023-02" data-to="2024-03"></span>
           </div>
           <ul class="tl-list">
             <li>Built Laravel-based web applications with admin dashboards and role-based access</li>
@@ -514,21 +529,15 @@
             <span>Laravel 9</span><span>Multi-Auth</span><span>RBAC</span>
             <span>MySQL</span><span>Legacy Migration</span><span>Bootstrap</span>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="tl-item reveal">
-        <div class="tl-card glass shine">
-          <div class="xp-head">
-            <div class="xp-mark">TW</div>
-            <div class="xp-headings">
-              <div class="tl-role">Web Developer <span style="font-weight:500;color:var(--muted);font-size:0.85rem;">(Intern)</span></div>
-              <div class="tl-company"><b>Tecweb BD IT</b> · Dhaka, Bangladesh</div>
-              <div class="tl-meta">
-                <span class="tl-date">Nov 2022 — Jan 2023</span>
-                <span class="tl-dur" data-from="2022-11" data-to="2023-01"></span>
-              </div>
-            </div>
+        <article class="xp-panel glass" role="tabpanel" id="xp-panel-3" aria-labelledby="xp-tab-3">
+          <span class="xp-panel-index">03</span>
+          <div class="tl-role">Web Developer <span class="tl-role-note">(Intern)</span></div>
+          <div class="tl-company"><b>Tecweb BD IT</b> · Dhaka, Bangladesh</div>
+          <div class="tl-meta">
+            <span class="tl-date">Nov 2022 — Jan 2023</span>
+            <span class="tl-dur" data-from="2022-11" data-to="2023-01"></span>
           </div>
           <ul class="tl-list">
             <li>Assisted in building dynamic websites for small businesses using Laravel</li>
@@ -538,9 +547,8 @@
           <div class="xp-tech">
             <span>Laravel</span><span>PHP</span><span>MySQL</span><span>jQuery</span><span>CSS</span>
           </div>
-        </div>
+        </article>
       </div>
-
     </div>
   </div>
 </section>
@@ -803,9 +811,8 @@
   </svg>
   <i class="fas fa-arrow-up"></i>
 </button>
-
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="assets/js/projects.js?v=4.2"></script>
-<script defer src="assets/js/main.js?v=4.2"></script>
+<script defer src="assets/js/projects.js?v=5.5"></script>
+<script defer src="assets/js/main.js?v=5.5"></script>
 </body>
 </html>

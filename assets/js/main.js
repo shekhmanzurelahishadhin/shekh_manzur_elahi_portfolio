@@ -13,7 +13,7 @@
     root.setAttribute('data-theme', theme);
     try { localStorage.setItem('sme-theme', theme); } catch (e) {}
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0b0a' : '#fafafa');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#060d14' : '#f2f7fa');
     if (window.__updateSceneTheme) window.__updateSceneTheme(theme);
   }
 
@@ -112,31 +112,118 @@
     const group = new THREE.Group();
     scene.add(group);
 
-    // --- Wireframe polyhedra: small, far back, whisper-quiet ---
-    const geometries = [
-      new THREE.IcosahedronGeometry(0.85, 0),
-      new THREE.OctahedronGeometry(0.7, 0),
-      new THREE.TorusGeometry(0.62, 0.17, 10, 28),
-      new THREE.DodecahedronGeometry(0.72, 0),
-      new THREE.TetrahedronGeometry(0.68, 0)
+    // --- Developer icons drawn as clean outlines ---
+    const V = (x, y, z) => new THREE.Vector3(x, y, z || 0);
+    const geoOf = (pts) => new THREE.BufferGeometry().setFromPoints(pts);
+    // polyline -> segment pairs
+    const poly = (arr, closed) => {
+      const out = [];
+      for (let i = 0; i < arr.length - 1; i++) out.push(V(arr[i][0], arr[i][1]), V(arr[i + 1][0], arr[i + 1][1]));
+      if (closed) out.push(V(arr[arr.length - 1][0], arr[arr.length - 1][1]), V(arr[0][0], arr[0][1]));
+      return out;
+    };
+    const circle = (cx, cy, r, seg) => {
+      const a = [];
+      for (let i = 0; i < (seg || 20); i++) { const t = (i / (seg || 20)) * Math.PI * 2; a.push([cx + Math.cos(t) * r, cy + Math.sin(t) * r]); }
+      return poly(a, true);
+    };
+    const rect = (x, y, w, h) => poly([[x, y], [x + w, y], [x + w, y + h], [x, y + h]], true);
+    const ringY = (r, y, seg) => {
+      const pts = [];
+      for (let i = 0; i < seg; i++) {
+        const a0 = (i / seg) * Math.PI * 2, a1 = ((i + 1) / seg) * Math.PI * 2;
+        pts.push(V(Math.cos(a0) * r, y, Math.sin(a0) * r), V(Math.cos(a1) * r, y, Math.sin(a1) * r));
+      }
+      return pts;
+    };
+
+    // </>
+    const code = [
+      ...poly([[-0.35, 0.45], [-0.85, 0], [-0.35, -0.45]]),
+      ...poly([[0.18, 0.55], [-0.18, -0.55]]),
+      ...poly([[0.35, 0.45], [0.85, 0], [0.35, -0.45]])
+    ];
+
+    // { }
+    const brace = [[-0.25, 0.75], [-0.4, 0.68], [-0.45, 0.5], [-0.45, 0.15], [-0.55, 0.03], [-0.7, 0], [-0.55, -0.03], [-0.45, -0.15], [-0.45, -0.5], [-0.4, -0.68], [-0.25, -0.75]];
+    const braces = [...poly(brace), ...poly(brace.map(([x, y]) => [-x, y]))];
+
+    // terminal window  >_
+    const terminal = [
+      ...rect(-0.95, -0.62, 1.9, 1.24),
+      ...poly([[-0.95, 0.38], [0.95, 0.38]]),
+      ...circle(-0.78, 0.5, 0.05, 10), ...circle(-0.62, 0.5, 0.05, 10), ...circle(-0.46, 0.5, 0.05, 10),
+      ...poly([[-0.7, 0.12], [-0.42, -0.08], [-0.7, -0.28]]),
+      ...poly([[-0.3, -0.3], [0.1, -0.3]])
+    ];
+
+    // git branch
+    const branchCurve = [];
+    for (let i = 0; i <= 10; i++) { const t = i / 10; branchCurve.push([-0.4 + 0.85 * t, -0.3 + 0.36 * (1 - Math.pow(1 - t, 2))]); }
+    const git = [
+      ...circle(-0.4, -0.72, 0.15), ...circle(-0.4, 0.72, 0.15), ...circle(0.45, 0.21, 0.15),
+      ...poly([[-0.4, -0.57], [-0.4, 0.57]]),
+      ...poly(branchCurve)
+    ];
+
+    // database: three stacked discs with side rails (true 3D)
+    const db = [...ringY(0.62, 0.55, 40), ...ringY(0.62, 0, 40), ...ringY(0.62, -0.55, 40)];
+    [0, 1, 2, 3].forEach((k) => { const a = k * Math.PI / 2; db.push(V(Math.cos(a) * 0.62, 0.55, Math.sin(a) * 0.62), V(Math.cos(a) * 0.62, -0.55, Math.sin(a) * 0.62)); });
+
+    // server rack
+    const server = [];
+    [0.3, -0.2, -0.7].forEach((y) => {
+      server.push(...rect(-0.8, y, 1.6, 0.4));
+      server.push(...circle(0.5, y + 0.2, 0.05, 10), ...circle(0.64, y + 0.2, 0.05, 10));
+      server.push(...poly([[-0.62, y + 0.2], [-0.1, y + 0.2]]));
+    });
+
+    // browser window
+    const browser = [
+      ...rect(-0.95, -0.65, 1.9, 1.3),
+      ...poly([[-0.95, 0.4], [0.95, 0.4]]),
+      ...circle(-0.8, 0.52, 0.05, 10), ...circle(-0.66, 0.52, 0.05, 10), ...circle(-0.52, 0.52, 0.05, 10),
+      ...rect(-0.35, 0.47, 1.1, 0.1),
+      ...poly([[-0.75, 0.15], [0.3, 0.15]]), ...poly([[-0.75, -0.08], [0.6, -0.08]]), ...poly([[-0.75, -0.31], [0.1, -0.31]])
+    ];
+
+    // gear
+    const gearPts = [];
+    const TEETH = 8;
+    for (let i = 0; i < TEETH * 4; i++) {
+      const a = (i / (TEETH * 4)) * Math.PI * 2;
+      const r = (i % 4 === 0 || i % 4 === 1) ? 0.72 : 0.56;
+      gearPts.push([Math.cos(a) * r, Math.sin(a) * r]);
+    }
+    const gear = [...poly(gearPts, true), ...circle(0, 0, 0.22, 24)];
+
+    // [geometry, spins in 3D?]
+    const icons = [
+      [code, false], [db, true], [terminal, false], [braces, false],
+      [git, false], [server, false], [browser, false], [gear, false]
     ];
 
     const shapes = [];
     const positions = [
-      [-9.5, 3.8, -9], [9.0, 2.8, -8], [-7.2, -4.2, -10],
-      [7.8, -3.8, -9], [-2.6, 5.4, -12], [3.2, -5.6, -11]
+      [-9.5, 3.8, -9], [9.0, 2.8, -8], [-7.2, -4.2, -10], [7.8, -3.8, -9],
+      [-2.6, 5.4, -12], [3.2, -5.6, -11], [-11.5, -0.4, -12], [11.5, 0.2, -11]
     ];
 
     positions.forEach((p, i) => {
-      const geo = geometries[i % geometries.length];
-      const mat = new THREE.MeshBasicMaterial({ wireframe: true, transparent: true, opacity: 0.14 });
-      const mesh = new THREE.Mesh(geo, mat);
+      const [pts, spins] = icons[i % icons.length];
+      const mat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.2 });
+      const mesh = new THREE.LineSegments(geoOf(pts), mat);
       mesh.position.set(p[0], p[1], p[2]);
-      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
-      mesh.userData.spin = {
-        x: (Math.random() - 0.5) * 0.0026,
-        y: (Math.random() - 0.5) * 0.0026
-      };
+      mesh.scale.setScalar(1.1);
+      if (spins) {
+        mesh.rotation.set(0.35, Math.random() * Math.PI, 0);
+        mesh.userData.spin = { x: 0, y: 0.0028 };
+      } else {
+        // flat icons face the viewer and only sway, so they stay readable
+        mesh.userData.sway = true;
+        mesh.userData.tilt = (Math.random() - 0.5) * 0.25;
+        mesh.rotation.z = mesh.userData.tilt;
+      }
       mesh.userData.floatSeed = Math.random() * Math.PI * 2;
       mesh.userData.baseY = p[1];
       group.add(mesh);
@@ -159,8 +246,8 @@
 
     // --- Theme-aware colouring ---
     const PALETTE = {
-      dark:  { shapes: [0x0a90b1, 0x0c7a96, 0x075e73, 0x3fb4ce, 0x0a90b1, 0x0c7a96], dots: 0x3fb4ce, shapeOpacity: 0.14, dotOpacity: 0.28 },
-      light: { shapes: [0x0a90b1, 0x0c7a96, 0x054f63, 0x17a8c7, 0x0a90b1, 0x0c7a96], dots: 0x0a90b1, shapeOpacity: 0.1, dotOpacity: 0.18 }
+      dark:  { shapes: [0x0a90b1, 0x0c7a96, 0x075e73, 0x3fb4ce, 0x0a90b1, 0x0c7a96], dots: 0x3fb4ce, shapeOpacity: 0.26, dotOpacity: 0.28 },
+      light: { shapes: [0x0a90b1, 0x0c7a96, 0x054f63, 0x17a8c7, 0x0a90b1, 0x0c7a96], dots: 0x0a90b1, shapeOpacity: 0.2, dotOpacity: 0.18 }
     };
 
     window.__updateSceneTheme = function (theme) {
@@ -203,8 +290,13 @@
       curY += (targetY - curY) * 0.045;
 
       shapes.forEach((m) => {
-        m.rotation.x += m.userData.spin.x;
-        m.rotation.y += m.userData.spin.y;
+        if (m.userData.sway) {
+          m.rotation.y = Math.sin(t * 0.35 + m.userData.floatSeed) * 0.45;
+          m.rotation.x = Math.sin(t * 0.27 + m.userData.floatSeed * 1.7) * 0.15;
+        } else {
+          m.rotation.x += m.userData.spin.x;
+          m.rotation.y += m.userData.spin.y;
+        }
         m.position.y = m.userData.baseY + Math.sin(t * 0.55 + m.userData.floatSeed) * 0.5;
       });
 
@@ -476,6 +568,37 @@
       fg.style.strokeDashoffset = CIRC;
       io.observe(r);
     });
+  })();
+
+  /* ========================================================
+     EXPERIENCE TABS
+     ======================================================== */
+  (function experienceTabs() {
+    const tabs = [...document.querySelectorAll('.xp-tab')];
+    if (!tabs.length) return;
+    const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+
+    function select(i, focus) {
+      tabs.forEach((t, j) => {
+        const on = i === j;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        panels[j].hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+    }
+
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i, false));
+      t.addEventListener('keydown', (e) => {
+        const next = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (next === undefined) return;
+        e.preventDefault();
+        select((i + next + tabs.length) % tabs.length, true);
+      });
+    });
+    select(0, false);
   })();
 
   /* ========================================================
