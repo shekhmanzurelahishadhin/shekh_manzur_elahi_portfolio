@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Shekh Manzur Elahi — Full Stack Web Developer specialising in Laravel, ERP systems, React.js and database engineering."/>
-  <meta name="theme-color" content="#060d14"/>
+  <meta name="theme-color" content="#02021a"/>
   <meta name="author" content="Shekh Manzur Elahi"/>
   <title>Shekh Manzur Elahi | Full Stack Developer</title>
   <link rel="canonical" href="https://shekhmanzurelahi.com/"/>
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="Shekh Manzur Elahi"/>
   <meta property="og:title" content="Shekh Manzur Elahi | Full Stack Developer"/>
-  <meta property="og:description" content="Full Stack Web Developer with 3 years of experience building scalable ERP systems, Laravel APIs and Next.js applications."/>
+  <meta property="og:description" content="Full Stack Web Developer with 3+ years of experience building scalable ERP systems, Laravel APIs and Next.js applications."/>
   <meta property="og:image" content="https://i.ibb.co.com/JWLKcVQy/ee.png"/>
   <meta property="og:url" content="https://shekhmanzurelahi.com/"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -25,21 +25,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     /* Base fallback, inlined on purpose: if style.css is slow or fails to load,
-       the page still renders readable in the correct theme instead of flashing
-       unstyled white. style.css overrides all of this. */
-    html { color-scheme: dark light; }
-    body {
-      margin: 0;
-      background: #060d14;
-      color: #dfeaf0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-    html[data-theme="light"] body { background: #f2f7fa; color: #2b3a44; }
+       the page still renders readable instead of flashing unstyled white. */
+    html { background: #02021a; }
+    body { margin: 0; background: #02021a; color: #ececf6; font-family: 'Poppins', system-ui, -apple-system, sans-serif; }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css?v=5.5"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=6.6"/>
+
+  <script>
+    // set the saved theme before first paint so there is no light/dark flash
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('sme-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
 
   <script type="application/ld+json">
   {
@@ -70,236 +73,194 @@
 </head>
 <body>
 
-<a href="#home" class="skip-link">Skip to content</a>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pre-mark">SM</div>
-  <div class="pre-bar"><i id="preBar"></i></div>
-  <div class="pre-text" id="preText">Loading</div>
-</div>
-
-<div id="scroll-progress"></div>
-<canvas id="bg-canvas"></canvas>
-<div class="bg-grid"></div>
-<div class="bg-noise"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div id="cursor-glow"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <!-- NAVBAR -->
-<nav id="navbar">
-  <a href="#home" class="nav-logo">
-    <div class="nav-logo-icon">SM</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">Shekh Manzur <span>Elahi</span></span>
-      <span class="nav-logo-title">Full Stack Developer</span>
-    </div>
+<header id="navbar">
+  <a href="#home" class="nav-logo" aria-label="Shekh Manzur Elahi — home">
+    <span class="nav-logo-icon">SM</span>
+    <span class="nav-logo-name">Shekh Manzur</span>
   </a>
 
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact" class="nav-cta"><i class="fas fa-paper-plane"></i> Contact</a></li>
-    </ul>
+  <nav class="nav-pill" aria-label="Primary">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#certs">Credentials</a>
+  </nav>
 
+  <div class="nav-right">
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme">
       <i class="fas fa-sun ic-sun"></i>
       <i class="fas fa-moon ic-moon"></i>
     </button>
-
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+    <a href="#contact" class="btn-outline nav-cta">Get in Touch</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer">
-  <span class="drawer-label">Navigation</span>
-  <a href="#home"><i class="fas fa-house"></i> Home</a>
-  <a href="#about"><i class="fas fa-user"></i> About</a>
-  <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-  <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-  <a href="#projects"><i class="fas fa-folder-open"></i> Projects</a>
-  <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-  <div class="drawer-divider"></div>
+  <a href="#home"><span>01</span> Home</a>
+  <a href="#about"><span>02</span> About</a>
+  <a href="#skills"><span>03</span> Skills</a>
+  <a href="#experience"><span>04</span> Experience</a>
+  <a href="#projects"><span>05</span> Projects</a>
+  <a href="#education"><span>06</span> Education</a>
+  <a href="#certs"><span>07</span> Credentials</a>
+  <a href="#contact"><span>08</span> Contact</a>
   <div class="drawer-bottom">
-    <a href="#contact" class="drawer-cta"><i class="fas fa-paper-plane"></i> Contact Me</a>
-    <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener"><i class="fas fa-download"></i> Resume</a>
+    <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-download"></i> Resume</a>
   </div>
 </div>
 
-<!-- SIDE DOT NAV -->
-<nav id="dotnav" aria-label="Section navigation">
-  <a class="dot-link" href="#home"><span class="lbl">Home</span><span class="pip"></span></a>
-  <a class="dot-link" href="#about"><span class="lbl">About</span><span class="pip"></span></a>
-  <a class="dot-link" href="#skills"><span class="lbl">Skills</span><span class="pip"></span></a>
-  <a class="dot-link" href="#experience"><span class="lbl">Experience</span><span class="pip"></span></a>
-  <a class="dot-link" href="#projects"><span class="lbl">Projects</span><span class="pip"></span></a>
-  <a class="dot-link" href="#education"><span class="lbl">Education</span><span class="pip"></span></a>
-  <a class="dot-link" href="#certs"><span class="lbl">Credentials</span><span class="pip"></span></a>
-  <a class="dot-link" href="#contact"><span class="lbl">Contact</span><span class="pip"></span></a>
-</nav>
+<main id="main">
 
 <!-- HERO -->
-<section id="home">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge reveal">
-          <span class="dot"></span>
-          Available for opportunities
-        </div>
-        <h1 class="hero-name reveal">Shekh Manzur<br><span class="grad-text">Elahi</span></h1>
-        <p class="hero-role reveal">&lt; <span class="typed" id="typed"></span><span class="caret"></span> /&gt;</p>
-        <p class="hero-desc reveal">Passionate Full-Stack Developer with 3 years of experience designing and building scalable ERP systems and web applications. Specialized in Laravel and backend engineering with expertise in multi-authentication, role-based access control, and database optimization. Delivered 10+ production-level modules for HRM, Payroll, Inventory, and CRM systems.</p>
-        <div class="hero-contacts reveal">
-          <a href="mailto:shadhinmonzur18@gmail.com"><i class="fas fa-envelope"></i> shadhinmonzur18@gmail.com</a>
-          <a href="tel:+8801973829988"><i class="fas fa-phone"></i> (+88) 01973829988</a>
-          <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
-        </div>
-        <div class="hero-actions reveal">
-          <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-download"></i> <span>Download Resume</span></a>
-          <a href="#contact" class="btn-ghost"><i class="fas fa-paper-plane"></i> Contact Me</a>
-        </div>
-        <div class="hero-socials reveal">
-          <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
-        </div>
-      </div>
+<section id="home" class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-badge appear">
+      <span class="dot"></span>
+      Available for opportunities
+    </div>
+    <h1 class="hero-title" data-split>Shekh Manzur Elahi, Full Stack Developer Based in Dhaka</h1>
+    <p class="hero-role appear">&lt; <span class="typed" id="typed"></span><span class="caret"></span> /&gt;</p>
+    <p class="hero-desc appear">Passionate Full-Stack Developer with 3+ years of experience designing and building scalable ERP systems and web applications. Specialized in Laravel and backend engineering with expertise in multi-authentication, role-based access control, and database optimization. Delivered 10+ production-level modules for HRM, Payroll, Inventory, and CRM systems.</p>
+    <div class="hero-actions appear">
+      <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-download"></i> Download Resume</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+    </div>
+    <div class="hero-meta appear">
+      <a href="mailto:shadhinmonzur18@gmail.com"><i class="fas fa-envelope"></i> shadhinmonzur18@gmail.com</a>
+      <a href="tel:+8801973829988"><i class="fas fa-phone"></i> (+88) 01973829988</a>
+      <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+    </div>
+    <div class="hero-socials appear">
+      <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
+    </div>
 
-      <div class="hero-photo-wrap reveal">
-        <div class="hero-photo-frame">
-          <span class="hero-photo-tag">Dhaka, BD</span>
-          <img src="https://i.ibb.co.com/JWLKcVQy/ee.png" alt="Shekh Manzur Elahi"/>
-        </div>
-        <div class="hero-badge-float hb-1">
-          <span class="stat-num" data-count="3" data-suffix="+">3+</span>
-          <span class="stat-lbl">Years Experience</span>
-        </div>
-        <div class="hero-badge-float hb-2">
-          <span class="stat-num" data-count="12" data-suffix="+">12+</span>
-          <span class="stat-lbl">Projects Delivered</span>
-        </div>
-        <div class="hero-badge-float hb-3">
-          <span class="stat-num" data-count="10" data-suffix="+">10+</span>
-          <span class="stat-lbl">ERP Modules Built</span>
-        </div>
+    <div class="hero-stage appear">
+      <div class="hero-photo">
+        <span class="hero-photo-tag">Dhaka, BD</span>
+        <img src="https://i.ibb.co.com/JWLKcVQy/ee.png" alt="Shekh Manzur Elahi"/>
+      </div>
+      <div class="hero-float hf-1">
+        <span class="stat-num" data-count="3" data-suffix="+">3+</span>
+        <span class="stat-lbl">Years Experience</span>
+      </div>
+      <div class="hero-float hf-2">
+        <span class="stat-num" data-count="12" data-suffix="+">12+</span>
+        <span class="stat-lbl">Projects Delivered</span>
+      </div>
+      <div class="hero-float hf-3">
+        <span class="stat-num" data-count="10" data-suffix="+">10+</span>
+        <span class="stat-lbl">ERP Modules Built</span>
       </div>
     </div>
   </div>
 
-  <div class="scroll-cue">
-    <span class="mouse"></span>
-    Scroll
+  <!-- TECH MARQUEE -->
+  <div class="logos">
+    <p class="logos-title appear">The stack behind every system I ship</p>
+    <div class="marquee" data-marquee>
+      <div class="marquee-track">
+        <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
+        <span class="marquee-item"><i class="fab fa-laravel"></i> Laravel</span>
+        <span class="marquee-item"><i class="fab fa-react"></i> React.js</span>
+        <span class="marquee-item"><i class="fas fa-n"></i> Next.js</span>
+        <span class="marquee-item"><i class="fas fa-code"></i> TypeScript</span>
+        <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+        <span class="marquee-item"><i class="fas fa-wind"></i> Tailwind</span>
+        <span class="marquee-item"><i class="fas fa-exchange-alt"></i> REST API</span>
+        <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
+        <span class="marquee-item"><i class="fas fa-server"></i> SQL Server</span>
+        <span class="marquee-item"><i class="fab fa-docker"></i> Docker</span>
+        <span class="marquee-item"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+        <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
+        <span class="marquee-item"><i class="fas fa-project-diagram"></i> ERP Systems</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- TECH MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track" id="marqueeTrack">
-    <span class="marquee-item"><i class="fab fa-laravel"></i> Laravel</span>
-    <span class="marquee-item"><i class="fab fa-php"></i> PHP</span>
-    <span class="marquee-item"><i class="fab fa-react"></i> React.js</span>
-    <span class="marquee-item"><i class="fas fa-n"></i> Next.js</span>
-    <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
-    <span class="marquee-item"><i class="fas fa-code"></i> TypeScript</span>
-    <span class="marquee-item"><i class="fas fa-database"></i> MySQL</span>
-    <span class="marquee-item"><i class="fas fa-server"></i> SQL Server</span>
-    <span class="marquee-item"><i class="fas fa-exchange-alt"></i> REST API</span>
-    <span class="marquee-item"><i class="fas fa-cube"></i> Yii2</span>
-    <span class="marquee-item"><i class="fab fa-bootstrap"></i> Bootstrap</span>
-    <span class="marquee-item"><i class="fas fa-wind"></i> Tailwind</span>
-    <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
-    <span class="marquee-item"><i class="fas fa-project-diagram"></i> ERP Systems</span>
-  </div>
-</div>
+<!-- CONTENT SHEET -->
+<div class="sheet">
 
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-index">01 / 07</span>
-      <span class="sec-label">Who I am</span>
-      <h2 class="sec-title">About <span class="grad-text">Me</span></h2>
-    </div>
-
     <div class="about-grid">
-      <div class="reveal">
-        <p class="about-para">I'm a <strong>Full Stack Web Developer</strong> based in Dhaka. Most of my work is the systems companies run their operations on — ERP and fleet-management platforms, internal dashboards, and increasingly the AI-assisted tools and Next.js frontends built on top of them.</p>
-        <p class="about-para">That's meant building for <strong>Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco</strong> and more — real businesses where the question is rarely technical first: how payroll should actually be calculated, who is allowed to approve a transfer, why a report takes forty seconds to load. I spend as much time understanding the workflow as writing the <strong>Laravel</strong> code that implements it.</p>
-        <p class="about-para">On the backend my strength is <strong>secure role-based access</strong>, multi-tenant authentication, and keeping queries fast as tables grow into the millions with stored procedures and well-designed schemas — work that's lately extended into AI-driven matching and the Next.js frontends sitting on those same APIs.</p>
+      <div class="about-head">
+        <span class="sec-label reveal">01 / 07 · Who I am</span>
+        <h2 class="sec-title big reveal">About Me</h2>
+        <dl class="profile-list reveal">
+          <div class="pf-row"><dt><i class="fas fa-location-dot"></i> Location</dt><dd>Dhaka, Bangladesh</dd></div>
+          <div class="pf-row"><dt><i class="fas fa-briefcase"></i> Current role</dt><dd>Software Engineer<small>Multibrand Group</small></dd></div>
+          <div class="pf-row"><dt><i class="fas fa-clock-rotate-left"></i> Experience</dt><dd>3+ years<small>Since Nov 2022</small></dd></div>
+          <div class="pf-row"><dt><i class="fas fa-graduation-cap"></i> Education</dt><dd>B.Sc in CSE<small>CGPA 3.97 / 4.00</small></dd></div>
+          <div class="pf-row"><dt><i class="fas fa-language"></i> Languages</dt><dd>Bangla, English</dd></div>
+          <div class="pf-row"><dt><i class="fas fa-circle-check"></i> Availability</dt><dd><span class="pf-open">Open to opportunities</span></dd></div>
+        </dl>
+      </div>
+      <div class="about-body">
+        <p class="about-para scrub">I'm a <strong>Full Stack Web Developer</strong> based in Dhaka. Most of my work is the systems companies run their operations on — ERP and fleet-management platforms, internal dashboards, and increasingly the AI-assisted tools and Next.js frontends built on top of them.</p>
+        <p class="about-para reveal">That's meant building for <strong>Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco</strong> and more — real businesses where the question is rarely technical first: how payroll should actually be calculated, who is allowed to approve a transfer, why a report takes forty seconds to load. I spend as much time understanding the workflow as writing the <strong>Laravel</strong> code that implements it.</p>
+        <p class="about-para reveal">On the backend my strength is <strong>secure role-based access</strong>, multi-tenant authentication, and keeping queries fast as tables grow into the millions with stored procedures and well-designed schemas — work that's lately extended into AI-driven matching and the Next.js frontends sitting on those same APIs.</p>
 
         <div class="about-stats">
-          <div class="stat-tile glass shine">
+          <div class="stat-tile reveal">
             <div class="n" data-count="3" data-suffix="+">3+</div>
             <div class="l">Years Experience</div>
           </div>
-          <div class="stat-tile glass shine">
+          <div class="stat-tile reveal">
             <div class="n" data-count="10" data-suffix="+">10+</div>
             <div class="l">ERP Modules</div>
           </div>
-          <div class="stat-tile glass shine">
+          <div class="stat-tile reveal">
             <div class="n" data-count="100" data-suffix="+">100+</div>
             <div class="l">Problems Solved</div>
           </div>
         </div>
       </div>
-
-      <dl class="profile-card glass shine reveal">
-        <h3><i class="fas fa-id-badge"></i> Profile</h3>
-
-        <div class="pf-row">
-          <dt><i class="fas fa-location-dot"></i> Location</dt>
-          <dd>Dhaka, Bangladesh</dd>
-        </div>
-        <div class="pf-row">
-          <dt><i class="fas fa-briefcase"></i> Current role</dt>
-          <dd>Software Engineer<small>Multibrand Group</small></dd>
-        </div>
-        <div class="pf-row">
-          <dt><i class="fas fa-clock-rotate-left"></i> Experience</dt>
-          <dd>3+ years<small>Since Nov 2022</small></dd>
-        </div>
-        <div class="pf-row">
-          <dt><i class="fas fa-graduation-cap"></i> Education</dt>
-          <dd>B.Sc in CSE<small>CGPA 3.97 / 4.00</small></dd>
-        </div>
-        <div class="pf-row">
-          <dt><i class="fas fa-language"></i> Languages</dt>
-          <dd>Bangla, English</dd>
-        </div>
-        <div class="pf-row">
-          <dt><i class="fas fa-circle-check"></i> Availability</dt>
-          <dd><span class="pf-open">Open to opportunities</span></dd>
-        </div>
-      </dl>
     </div>
 
-    <div class="focus-grid">
-      <div class="focus-card f1 glass shine reveal">
-        <div class="ico"><i class="fas fa-cubes"></i></div>
-        <h3>ERP Systems</h3>
-        <p>Building the modules businesses run on — HRM, Payroll, Inventory, Finance and CRM — across manufacturing, retail and services, on Laravel and Yii2.</p>
+    <!-- FOCUS AREAS: stepper, like a "how I work" walkthrough -->
+    <div class="focus reveal" data-steps>
+      <h3 class="focus-title">What I focus on</h3>
+      <div class="focus-panels">
+        <div class="focus-panel active" data-step-panel>
+          <div class="ico"><i class="fas fa-cubes"></i></div>
+          <h4>ERP Systems</h4>
+          <p>Building the modules businesses run on — HRM, Payroll, Inventory, Finance and CRM — across manufacturing, retail and services, on Laravel, PHP and React.js.</p>
+        </div>
+        <div class="focus-panel" data-step-panel>
+          <div class="ico"><i class="fas fa-shield-halved"></i></div>
+          <h4>Backend &amp; APIs</h4>
+          <p>REST APIs with token authentication, multi-auth login, granular role and permission layers, plus queued jobs and cron automation for reporting and data sync.</p>
+        </div>
+        <div class="focus-panel" data-step-panel>
+          <div class="ico"><i class="fas fa-database"></i></div>
+          <h4>Database Engineering</h4>
+          <p>Designing schemas in MySQL and SQL Server, then keeping them fast — stored procedures, triggers and query tuning so reports stay quick as data grows.</p>
+        </div>
       </div>
-      <div class="focus-card f2 glass shine reveal">
-        <div class="ico"><i class="fas fa-shield-halved"></i></div>
-        <h3>Backend &amp; APIs</h3>
-        <p>REST APIs with token authentication, multi-auth login, granular role and permission layers, plus queued jobs and cron automation for reporting and data sync.</p>
-      </div>
-      <div class="focus-card f3 glass shine reveal">
-        <div class="ico"><i class="fas fa-database"></i></div>
-        <h3>Database Engineering</h3>
-        <p>Designing schemas in MySQL and SQL Server, then keeping them fast — stored procedures, triggers and query tuning so reports stay quick as data grows.</p>
+      <div class="focus-foot">
+        <span class="focus-label" data-step-label>Step 1 : ERP Systems</span>
+        <div class="focus-steps" role="tablist" aria-label="Focus areas">
+          <button class="active" role="tab" aria-selected="true" data-step="0" data-name="ERP Systems">1</button>
+          <button role="tab" aria-selected="false" data-step="1" data-name="Backend &amp; APIs">2</button>
+          <button role="tab" aria-selected="false" data-step="2" data-name="Database Engineering">3</button>
+        </div>
       </div>
     </div>
   </div>
@@ -308,258 +269,131 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="container">
-    <div class="sec-head center reveal">
-      <span class="sec-index">02 / 07</span>
-      <span class="sec-label">What I work with</span>
-      <h2 class="sec-title">Skills &amp; <span class="grad-text">Toolkit</span></h2>
-      <p class="sec-sub">The stack I reach for daily, built over three years of shipping production ERP platforms, APIs and dashboards.</p>
+    <div class="sec-head split">
+      <div>
+        <span class="sec-label reveal">02 / 07 · What I work with</span>
+        <h2 class="sec-title reveal">Skills &amp; Toolkit</h2>
+      </div>
+      <p class="sec-sub reveal">The stack I reach for daily, built over 3+ years of shipping production ERP platforms, APIs and dashboards.</p>
     </div>
 
     <!-- CORE STACK -->
     <div class="core-stack">
-      <div class="core-tile lang glass shine reveal">
-        <div class="ico"><i class="fab fa-laravel"></i></div>
-        <strong>Laravel</strong>
-        <em>Primary backend framework</em>
-      </div>
-      <div class="core-tile lang glass shine reveal">
-        <div class="ico"><i class="fab fa-php"></i></div>
-        <strong>PHP</strong>
-        <em>Core language, 3 years</em>
-      </div>
-      <div class="core-tile back glass shine reveal">
-        <div class="ico"><i class="fas fa-database"></i></div>
-        <strong>MySQL &amp; SQL Server</strong>
-        <em>Schema design &amp; optimisation</em>
-      </div>
-      <div class="core-tile front glass shine reveal">
-        <div class="ico"><i class="fab fa-react"></i></div>
-        <strong>React &amp; Next.js</strong>
-        <em>Frontend and headless apps</em>
-      </div>
-      <div class="core-tile tools glass shine reveal">
-        <div class="ico"><i class="fas fa-diagram-project"></i></div>
-        <strong>ERP Architecture</strong>
-        <em>Multi-auth, RBAC, modules</em>
-      </div>
+      <div class="core-tile reveal"><i class="fab fa-laravel"></i><div><strong>Laravel</strong><em>Primary backend framework</em></div></div>
+      <div class="core-tile reveal"><i class="fab fa-php"></i><div><strong>PHP</strong><em>Core language, 3+ years</em></div></div>
+      <div class="core-tile reveal"><i class="fas fa-database"></i><div><strong>MySQL &amp; SQL Server</strong><em>Schema design &amp; optimisation</em></div></div>
+      <div class="core-tile reveal"><i class="fab fa-react"></i><div><strong>React &amp; Next.js</strong><em>Frontend and headless apps</em></div></div>
+      <div class="core-tile reveal"><i class="fas fa-diagram-project"></i><div><strong>ERP Architecture</strong><em>Multi-auth, RBAC, modules</em></div></div>
     </div>
 
     <!-- LEGEND -->
     <div class="skill-legend reveal">
-      <span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Daily driver</span>
-      <span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Production experience</span>
-      <span><span class="dots"><i class="on"></i><i></i><i></i></span> Working knowledge</span>
+      <span><i class="lv lv-3"></i> Daily driver</span>
+      <span><i class="lv lv-2"></i> Production experience</span>
+      <span><i class="lv lv-1"></i> Working knowledge</span>
     </div>
 
-    <div class="skills-universe">
-
-      <!-- LANGUAGES & FRAMEWORKS -->
-      <div class="skill-planet lang glass shine reveal tilt">
-        <div class="blob"></div>
-        <div class="planet-icon-wrap"><i class="fas fa-code"></i></div>
-        <div class="planet-title">Languages &amp; Frameworks</div>
-        <p class="planet-note">What the systems are actually written in — backend first, with a modern JS layer on top.</p>
-        <ul class="skill-list">
-          <li><span class="nm"><i class="fab fa-php"></i><span>PHP</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fab fa-laravel"></i><span>Laravel</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fab fa-js"></i><span>JavaScript (ES6)</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-database"></i><span>MySQL</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-exchange-alt"></i><span>REST API</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-server"></i><span>SQL Server</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fab fa-react"></i><span>React.js</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-n"></i><span>Next.js</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-cube"></i><span>Yii2</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-code"></i><span>TypeScript</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
+    <div class="skill-groups">
+      <div class="skill-group reveal">
+        <div class="sg-head">
+          <span class="sg-ico"><i class="fas fa-code"></i></span>
+          <div>
+            <h3>Languages &amp; Frameworks</h3>
+            <p>What the systems are actually written in — backend first, with a modern JS layer on top.</p>
+          </div>
+        </div>
+        <ul class="pills">
+          <li class="pill l3"><i class="fab fa-php"></i> PHP</li>
+          <li class="pill l3"><i class="fab fa-laravel"></i> Laravel</li>
+          <li class="pill l3"><i class="fab fa-react"></i> React.js</li>
+          <li class="pill l3"><i class="fas fa-n"></i> Next.js</li>
+          <li class="pill l3"><i class="fas fa-code"></i> TypeScript</li>
+          <li class="pill l3"><i class="fab fa-js"></i> JavaScript (ES6)</li>
+          <li class="pill l3"><i class="fas fa-database"></i> MySQL</li>
+          <li class="pill l3"><i class="fas fa-exchange-alt"></i> REST API</li>
+          <li class="pill l3"><i class="fas fa-server"></i> SQL Server</li>
+          <li class="pill l2"><i class="fas fa-cube"></i> Yii2</li>
         </ul>
       </div>
 
-      <!-- FRONTEND -->
-      <div class="skill-planet front glass shine reveal tilt">
-        <div class="blob"></div>
-        <div class="planet-icon-wrap"><i class="fas fa-paint-brush"></i></div>
-        <div class="planet-title">Frontend</div>
-        <p class="planet-note">Building the dashboards and interfaces that sit on top of those APIs.</p>
-        <ul class="skill-list">
-          <li><span class="nm"><i class="fab fa-bootstrap"></i><span>Bootstrap 5</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-anchor"></i><span>React Hooks</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-network-wired"></i><span>Axios</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-sync-alt"></i><span>Ajax</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fab fa-js"></i><span>jQuery</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-wind"></i><span>Tailwind CSS</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-route"></i><span>React Router</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fab fa-react"></i><span>React Bootstrap</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-wand-magic-sparkles"></i><span>GSAP / Framer Motion</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fab fa-figma"></i><span>Figma</span></span><span class="dots"><i class="on"></i><i></i><i></i></span></li>
+      <div class="skill-group reveal">
+        <div class="sg-head">
+          <span class="sg-ico"><i class="fas fa-paint-brush"></i></span>
+          <div>
+            <h3>Frontend</h3>
+            <p>Building the dashboards and interfaces that sit on top of those APIs.</p>
+          </div>
+        </div>
+        <ul class="pills">
+          <li class="pill l3"><i class="fab fa-bootstrap"></i> Bootstrap 5</li>
+          <li class="pill l3"><i class="fas fa-anchor"></i> React Hooks</li>
+          <li class="pill l3"><i class="fas fa-network-wired"></i> Axios</li>
+          <li class="pill l3"><i class="fas fa-sync-alt"></i> Ajax</li>
+          <li class="pill l3"><i class="fab fa-js"></i> jQuery</li>
+          <li class="pill l3"><i class="fas fa-wind"></i> Tailwind CSS</li>
+          <li class="pill l2"><i class="fas fa-route"></i> React Router</li>
+          <li class="pill l2"><i class="fab fa-react"></i> React Bootstrap</li>
+          <li class="pill l2"><i class="fas fa-wand-magic-sparkles"></i> GSAP / Framer Motion</li>
+          <li class="pill l1"><i class="fab fa-figma"></i> Figma</li>
         </ul>
       </div>
 
-      <!-- BACKEND -->
-      <div class="skill-planet back glass shine reveal tilt">
-        <div class="blob"></div>
-        <div class="planet-icon-wrap"><i class="fas fa-server"></i></div>
-        <div class="planet-title">Backend &amp; Architecture</div>
-        <p class="planet-note">The patterns behind every ERP I've shipped — access control, automation and query performance.</p>
-        <ul class="skill-list">
-          <li><span class="nm"><i class="fas fa-user-lock"></i><span>Multi-Authentication</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-shield-alt"></i><span>Role &amp; Permission (RBAC)</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-clock"></i><span>Cron Jobs &amp; Triggers</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-project-diagram"></i><span>ERP Modules</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-cogs"></i><span>CMS Development</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-bolt"></i><span>Stored Procedures</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-key"></i><span>Laravel Sanctum</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-passport"></i><span>Laravel Passport</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-layer-group"></i><span>Queues &amp; Jobs</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-bolt-lightning"></i><span>Redis Caching</span></span><span class="dots"><i class="on"></i><i></i><i></i></span></li>
+      <div class="skill-group reveal">
+        <div class="sg-head">
+          <span class="sg-ico"><i class="fas fa-server"></i></span>
+          <div>
+            <h3>Backend &amp; Architecture</h3>
+            <p>The patterns behind every ERP I've shipped — access control, automation and query performance.</p>
+          </div>
+        </div>
+        <ul class="pills">
+          <li class="pill l3"><i class="fas fa-user-lock"></i> Multi-Authentication</li>
+          <li class="pill l3"><i class="fas fa-shield-alt"></i> Role &amp; Permission (RBAC)</li>
+          <li class="pill l3"><i class="fas fa-clock"></i> Cron Jobs &amp; Triggers</li>
+          <li class="pill l3"><i class="fas fa-project-diagram"></i> ERP Modules</li>
+          <li class="pill l3"><i class="fas fa-cogs"></i> CMS Development</li>
+          <li class="pill l3"><i class="fas fa-bolt"></i> Stored Procedures</li>
+          <li class="pill l3"><i class="fas fa-key"></i> Laravel Sanctum</li>
+          <li class="pill l3"><i class="fas fa-passport"></i> Laravel Passport</li>
+          <li class="pill l2"><i class="fas fa-layer-group"></i> Queues &amp; Jobs</li>
+          <li class="pill l1"><i class="fas fa-bolt-lightning"></i> Redis Caching</li>
         </ul>
       </div>
 
-      <!-- TOOLS -->
-      <div class="skill-planet tools glass shine reveal tilt">
-        <div class="blob"></div>
-        <div class="planet-icon-wrap"><i class="fas fa-tools"></i></div>
-        <div class="planet-title">Tools &amp; Platforms</div>
-        <p class="planet-note">Day-to-day workflow: version control, editors, debugging and deployment.</p>
-        <ul class="skill-list">
-          <li><span class="nm"><i class="fab fa-github"></i><span>Git &amp; GitHub</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fas fa-code"></i><span>VS Code</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fab fa-chrome"></i><span>Chrome DevTools</span></span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="nm"><i class="fab fa-gitlab"></i><span>GitLab</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fab fa-bitbucket"></i><span>Bitbucket</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fa-solid fa-rocket"></i><span>PhpStorm</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-hdd"></i><span>cPanel</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-cloud"></i><span>Netlify / Vercel</span></span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="nm"><i class="fab fa-docker"></i><span>Docker</span></span><span class="dots"><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="nm"><i class="fas fa-fire"></i><span>Firebase FCM</span></span><span class="dots"><i class="on"></i><i></i><i></i></span></li>
+      <div class="skill-group reveal">
+        <div class="sg-head">
+          <span class="sg-ico"><i class="fas fa-tools"></i></span>
+          <div>
+            <h3>Tools &amp; Platforms</h3>
+            <p>Day-to-day workflow: version control, editors, debugging and deployment.</p>
+          </div>
+        </div>
+        <ul class="pills">
+          <li class="pill l3"><i class="fab fa-github"></i> Git &amp; GitHub</li>
+          <li class="pill l3"><i class="fas fa-code"></i> VS Code</li>
+          <li class="pill l3"><i class="fab fa-chrome"></i> Chrome DevTools</li>
+          <li class="pill l3"><i class="fab fa-gitlab"></i> GitLab</li>
+          <li class="pill l3"><i class="fab fa-bitbucket"></i> Bitbucket</li>
+          <li class="pill l3"><i class="fa-solid fa-rocket"></i> PhpStorm</li>
+          <li class="pill l2"><i class="fas fa-hdd"></i> cPanel</li>
+          <li class="pill l2"><i class="fas fa-cloud"></i> Netlify / Vercel</li>
+          <li class="pill l1"><i class="fab fa-docker"></i> Docker</li>
+          <li class="pill l1"><i class="fas fa-fire"></i> Firebase FCM</li>
         </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <div class="sec-head center reveal">
-      <span class="sec-index">03 / 07</span>
-      <span class="sec-label">Where I've worked</span>
-      <h2 class="sec-title">Work <span class="grad-text">Experience</span></h2>
-      <p class="sec-sub">From an internship building small business sites to leading full-stack ERP delivery.</p>
-    </div>
-
-    <div class="xp-summary">
-      <div class="xp-stat glass shine reveal">
-        <div class="n" data-since="2022-11" data-count="3" data-suffix="+">3+</div>
-        <div class="l">Years Experience</div>
-      </div>
-      <div class="xp-stat glass shine reveal">
-        <div class="n" data-count="3">3</div>
-        <div class="l">Companies</div>
-      </div>
-      <div class="xp-stat glass shine reveal">
-        <div class="n" data-count="10" data-suffix="+">10+</div>
-        <div class="l">Modules Delivered</div>
-      </div>
-    </div>
-
-    <div class="xp-tabs reveal">
-      <div class="xp-tablist" role="tablist" aria-label="Work experience">
-        <button class="xp-tab active" role="tab" id="xp-tab-1" aria-controls="xp-panel-1" aria-selected="true" data-from="2024-04">
-          <span class="xp-mark">MG</span>
-          <span class="xp-tab-text">
-            <strong>Multibrand Group</strong>
-            <small>Apr 2024 — Present</small>
-          </span>
-        </button>
-        <button class="xp-tab" role="tab" id="xp-tab-2" aria-controls="xp-panel-2" aria-selected="false" tabindex="-1" data-from="2023-02" data-to="2024-03">
-          <span class="xp-mark">PN</span>
-          <span class="xp-tab-text">
-            <strong>PeopleNTech Ltd</strong>
-            <small>Feb 2023 — Mar 2024</small>
-          </span>
-        </button>
-        <button class="xp-tab" role="tab" id="xp-tab-3" aria-controls="xp-panel-3" aria-selected="false" tabindex="-1" data-from="2022-11" data-to="2023-01">
-          <span class="xp-mark">TW</span>
-          <span class="xp-tab-text">
-            <strong>Tecweb BD IT</strong>
-            <small>Nov 2022 — Jan 2023</small>
-          </span>
-        </button>
-      </div>
-
-      <div class="xp-panels">
-        <article class="xp-panel glass" role="tabpanel" id="xp-panel-1" aria-labelledby="xp-tab-1">
-          <span class="xp-panel-index">01</span>
-          <div class="tl-role">Software Engineer</div>
-          <div class="tl-company"><b>Multibrand Group</b> · Dhaka, Bangladesh</div>
-          <div class="tl-meta">
-            <span class="tl-now">Current</span>
-            <span class="tl-date">Apr 2024 — Present</span>
-            <span class="tl-dur" data-from="2024-04"></span>
-          </div>
-          <ul class="tl-list">
-            <li>Build and maintain ERP and Vendor Management systems for group companies — Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and more — covering HRM, Payroll, Finance, Inventory and CRM on Laravel and Yii2</li>
-            <li>Developing a Fleet Management System for the full vehicle lifecycle — documents, fuel, trips and route planning, workshop repair estimates with an approval workflow, through to disposal by auction</li>
-            <li>Building Asset ERP, a workshop asset and tool management system — a Laravel 11 API with 320+ endpoints behind a Next.js 16 admin, covering purchase requests, assignment, transfer approvals, maintenance, depreciation and disposal</li>
-            <li>Built MDDL, a double-entry accounting system — chart of accounts, journal vouchers, cheque lifecycle, cost centres and multi-currency — deployed with Docker</li>
-            <li>Delivered an all-in-one work management platform — tasks, sprints, tickets and 25+ reports — with seven role-specific dashboards</li>
-            <li>Design SQL Server and MySQL schemas with stored procedures, triggers and cron jobs to keep reporting fast, plus company-scoped role-based access so each department sees only its own data</li>
-          </ul>
-          <div class="xp-tech">
-            <span>Laravel</span><span>Next.js</span><span>React.js</span><span>Yii2</span><span>SQL Server</span>
-            <span>MySQL</span><span>Stored Procedures</span><span>Spatie RBAC</span><span>Cron Jobs</span><span>Docker</span>
-          </div>
-        </article>
-
-        <article class="xp-panel glass" role="tabpanel" id="xp-panel-2" aria-labelledby="xp-tab-2">
-          <span class="xp-panel-index">02</span>
-          <div class="tl-role">Jr Programmer <span class="tl-role-note">(Project Base)</span></div>
-          <div class="tl-company"><b>PeopleNTech Ltd</b> · Dhaka, Bangladesh</div>
-          <div class="tl-meta">
-            <span class="tl-date">Feb 2023 — Mar 2024</span>
-            <span class="tl-dur" data-from="2023-02" data-to="2024-03"></span>
-          </div>
-          <ul class="tl-list">
-            <li>Built Laravel-based web applications with admin dashboards and role-based access</li>
-            <li>Participated in the development of a custom ERP system with secure multi-auth login</li>
-            <li>Migrated and refactored legacy Laravel 5 projects to Laravel 9</li>
-            <li>Delivered the university website for Jatiya Kabi Kazi Nazrul Islam University</li>
-          </ul>
-          <div class="xp-tech">
-            <span>Laravel 9</span><span>Multi-Auth</span><span>RBAC</span>
-            <span>MySQL</span><span>Legacy Migration</span><span>Bootstrap</span>
-          </div>
-        </article>
-
-        <article class="xp-panel glass" role="tabpanel" id="xp-panel-3" aria-labelledby="xp-tab-3">
-          <span class="xp-panel-index">03</span>
-          <div class="tl-role">Web Developer <span class="tl-role-note">(Intern)</span></div>
-          <div class="tl-company"><b>Tecweb BD IT</b> · Dhaka, Bangladesh</div>
-          <div class="tl-meta">
-            <span class="tl-date">Nov 2022 — Jan 2023</span>
-            <span class="tl-dur" data-from="2022-11" data-to="2023-01"></span>
-          </div>
-          <ul class="tl-list">
-            <li>Assisted in building dynamic websites for small businesses using Laravel</li>
-            <li>Contributed to frontend styling and backend integration</li>
-            <li>Gained hands-on experience in full-stack development workflows</li>
-          </ul>
-          <div class="xp-tech">
-            <span>Laravel</span><span>PHP</span><span>MySQL</span><span>jQuery</span><span>CSS</span>
-          </div>
-        </article>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="band">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-index">04 / 07</span>
-      <span class="sec-label">What I've built</span>
-      <h2 class="sec-title">Featured <span class="grad-text">Projects</span></h2>
+    <div class="sec-head split">
+      <div>
+        <span class="sec-label reveal">03 / 07 · What I've built</span>
+        <h2 class="sec-title reveal">Featured Projects</h2>
+      </div>
+      <p class="sec-sub reveal">Production systems and side builds — select any card for the full technical breakdown.</p>
     </div>
 
     <div class="proj-tabs reveal">
@@ -571,100 +405,174 @@
       <button class="proj-tab" data-cat="fullstack">Full Stack</button>
     </div>
 
-    <div class="proj-grid" data-projects data-limit="6"></div>
+    <div class="proj-stack-list" data-projects data-layout="stack" data-limit="6"></div>
 
     <div class="proj-cta reveal">
       <span class="count" id="projCount"></span>
-      <a href="projects.html" class="btn-primary">
-        <i class="fas fa-layer-group"></i> <span>View All Projects</span>
-      </a>
+      <a href="projects.html" class="btn-outline accent"><i class="fas fa-layer-group"></i> View All Projects</a>
     </div>
   </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-head split">
+      <div>
+        <span class="sec-label reveal">04 / 07 · Where I've worked</span>
+        <h2 class="sec-title reveal">Experience</h2>
+      </div>
+      <p class="sec-sub reveal">From an internship building small business sites to leading full-stack ERP delivery.</p>
+    </div>
+
+    <div class="xp-summary">
+      <div class="xp-stat reveal">
+        <div class="n" data-count="3" data-suffix="+">3+</div>
+        <div class="l">Years Experience</div>
+      </div>
+      <div class="xp-stat reveal">
+        <div class="n" data-count="3">3</div>
+        <div class="l">Companies</div>
+      </div>
+      <div class="xp-stat reveal">
+        <div class="n" data-count="10" data-suffix="+">10+</div>
+        <div class="l">Modules Delivered</div>
+      </div>
+    </div>
+
+    <div class="xp-list">
+      <article class="xp-card reveal">
+        <div class="xp-left">
+          <div class="xp-company">Multibrand Group · Dhaka, Bangladesh</div>
+          <h3 class="xp-role">Software Engineer</h3>
+          <div class="xp-meta">
+            <span class="tl-now">Current</span>
+            <span class="tl-date">Apr 2024 — Present</span>
+            <span class="tl-dur" data-from="2024-04"></span>
+          </div>
+        </div>
+        <div class="xp-right">
+          <ul class="tl-list">
+            <li>Build and maintain ERP and Vendor Management systems for group companies — Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and more — covering HRM, Payroll, Finance, Inventory and CRM on Laravel, PHP and React.js</li>
+            <li>Developing a Fleet Management System for the full vehicle lifecycle — documents, fuel, trips and route planning, workshop repair estimates with an approval workflow, through to disposal by auction</li>
+            <li>Building Asset ERP, a workshop asset and tool management system — a Laravel 11 API with 320+ endpoints behind a Next.js 16 admin, covering purchase requests, assignment, transfer approvals, maintenance, depreciation and disposal</li>
+            <li>Built MDDL, a double-entry accounting system — chart of accounts, journal vouchers, cheque lifecycle, cost centres and multi-currency — deployed with Docker</li>
+            <li>Delivered an all-in-one work management platform — tasks, sprints, tickets and 25+ reports — with seven role-specific dashboards</li>
+            <li>Design SQL Server and MySQL schemas with stored procedures, triggers and cron jobs to keep reporting fast, plus company-scoped role-based access so each department sees only its own data</li>
+          </ul>
+          <div class="xp-tech">
+            <span>Laravel</span><span>PHP</span><span>Next.js</span><span>React.js</span><span>TypeScript</span><span>SQL Server</span>
+            <span>MySQL</span><span>Stored Procedures</span><span>Spatie RBAC</span><span>Cron Jobs</span><span>Docker</span><span>Yii2</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="xp-card reveal">
+        <div class="xp-left">
+          <div class="xp-company">PeopleNTech Ltd · Dhaka, Bangladesh</div>
+          <h3 class="xp-role">Jr Programmer</h3>
+          <div class="xp-meta">
+            <span class="tl-date">Feb 2023 — Mar 2024</span>
+            <span class="tl-dur" data-from="2023-02" data-to="2024-03"></span>
+          </div>
+        </div>
+        <div class="xp-right">
+          <ul class="tl-list">
+            <li>Built Laravel-based web applications with admin dashboards and role-based access</li>
+            <li>Participated in the development of a custom ERP system with secure multi-auth login</li>
+            <li>Migrated and refactored legacy Laravel 5 projects to Laravel 9</li>
+            <li>Delivered the university website for Jatiya Kabi Kazi Nazrul Islam University</li>
+          </ul>
+          <div class="xp-tech">
+            <span>Laravel 9</span><span>Multi-Auth</span><span>RBAC</span>
+            <span>MySQL</span><span>Legacy Migration</span><span>Bootstrap</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="xp-card reveal">
+        <div class="xp-left">
+          <div class="xp-company">Tecweb BD IT · Dhaka, Bangladesh</div>
+          <h3 class="xp-role">Web Developer <span class="tl-role-note">(Intern)</span></h3>
+          <div class="xp-meta">
+            <span class="tl-date">Nov 2022 — Jan 2023</span>
+            <span class="tl-dur" data-from="2022-11" data-to="2023-01"></span>
+          </div>
+        </div>
+        <div class="xp-right">
+          <ul class="tl-list">
+            <li>Assisted in building dynamic websites for small businesses using Laravel</li>
+            <li>Contributed to frontend styling and backend integration</li>
+            <li>Gained hands-on experience in full-stack development workflows</li>
+          </ul>
+          <div class="xp-tech">
+            <span>Laravel</span><span>PHP</span><span>MySQL</span><span>jQuery</span><span>CSS</span>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
 <section id="education">
   <div class="container">
-    <div class="sec-head center reveal">
-      <span class="sec-index">05 / 07</span>
-      <span class="sec-label">Academic Background</span>
-      <h2 class="sec-title"><span class="grad-text">Education</span></h2>
-      <p class="sec-sub">A computer science foundation, carried through with consistent results.</p>
+    <div class="sec-head split">
+      <div>
+        <span class="sec-label reveal">05 / 07 · Academic Background</span>
+        <h2 class="sec-title reveal">Education</h2>
+      </div>
+      <p class="sec-sub reveal">A computer science foundation, carried through with consistent results.</p>
     </div>
 
-    <!-- shared gradient for every result ring -->
-    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
-      <defs>
-        <linearGradient id="eduGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="var(--violet)"/>
-          <stop offset="100%" stop-color="var(--cyan)"/>
-        </linearGradient>
-      </defs>
-    </svg>
-
     <div class="edu-grid">
-
-      <div class="edu-card glass shine reveal tilt">
+      <div class="edu-card reveal">
         <div class="edu-top">
-          <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+          <span class="edu-icon"><i class="fas fa-graduation-cap"></i></span>
           <span class="edu-year">2021</span>
         </div>
         <h3>B.Sc in Computer Science &amp; Engineering</h3>
         <div class="edu-inst">Daffodil International University</div>
         <div class="edu-dept">Faculty of Science &amp; Information Technology · Dhaka</div>
         <div class="edu-result">
-          <div class="edu-ring" data-pct="99.25">
-            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
-            <span class="val">3.97</span>
-          </div>
-          <div class="meta">
-            <span class="lbl">CGPA</span>
-            <span class="out">3.97 out of 4.00</span>
-          </div>
+          <span class="lbl">CGPA</span>
+          <span class="val">3.97</span>
+          <span class="out">3.97 out of 4.00</span>
+          <span class="edu-bar"><i data-pct="99.25"></i></span>
         </div>
       </div>
 
-      <div class="edu-card glass shine reveal tilt">
+      <div class="edu-card reveal">
         <div class="edu-top">
-          <div class="edu-icon"><i class="fas fa-school"></i></div>
+          <span class="edu-icon"><i class="fas fa-school"></i></span>
           <span class="edu-year">2016</span>
         </div>
         <h3>Higher Secondary Certificate (HSC)</h3>
         <div class="edu-inst">Dhaka City College</div>
         <div class="edu-dept">Science Group · Dhaka</div>
         <div class="edu-result">
-          <div class="edu-ring" data-pct="100">
-            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
-            <span class="val">5.00</span>
-          </div>
-          <div class="meta">
-            <span class="lbl">GPA</span>
-            <span class="out">5.00 out of 5.00</span>
-          </div>
+          <span class="lbl">GPA</span>
+          <span class="val">5.00</span>
+          <span class="out">5.00 out of 5.00</span>
+          <span class="edu-bar"><i data-pct="100"></i></span>
         </div>
       </div>
 
-      <div class="edu-card glass shine reveal tilt">
+      <div class="edu-card reveal">
         <div class="edu-top">
-          <div class="edu-icon"><i class="fas fa-book"></i></div>
+          <span class="edu-icon"><i class="fas fa-book"></i></span>
           <span class="edu-year">2014</span>
         </div>
         <h3>Secondary School Certificate (SSC)</h3>
         <div class="edu-inst">Motijheel Model High School &amp; College</div>
         <div class="edu-dept">Science Group · Dhaka</div>
         <div class="edu-result">
-          <div class="edu-ring" data-pct="100">
-            <svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"></circle><circle class="fg" cx="31" cy="31" r="26"></circle></svg>
-            <span class="val">5.00</span>
-          </div>
-          <div class="meta">
-            <span class="lbl">GPA</span>
-            <span class="out">5.00 out of 5.00</span>
-          </div>
+          <span class="lbl">GPA</span>
+          <span class="val">5.00</span>
+          <span class="out">5.00 out of 5.00</span>
+          <span class="edu-bar"><i data-pct="100"></i></span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -672,63 +580,99 @@
 <!-- CERTIFICATIONS & ACTIVITIES -->
 <section id="certs">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-index">06 / 07</span>
-      <span class="sec-label">Credentials</span>
-      <h2 class="sec-title">Certifications &amp; <span class="grad-text">Activities</span></h2>
-    </div>
-
-    <p class="sub-label reveal">Certifications &amp; Training</p>
-    <div class="cert-grid">
-      <div class="cert-card glass shine reveal">
-        <div class="cert-card-icon"><i class="fas fa-certificate"></i></div>
-        <div>
-          <h3>PHP with Laravel Framework</h3>
-          <p>BITM</p>
-        </div>
+    <div class="sec-head split">
+      <div>
+        <span class="sec-label reveal">06 / 07 · Credentials</span>
+        <h2 class="sec-title reveal">Certifications &amp; Activities</h2>
       </div>
     </div>
 
-    <p class="sub-label reveal">Extra-curricular Activities</p>
-    <div class="activity-grid">
-      <div class="activity-card glass shine reveal tilt">
+    <div class="cred-list">
+      <p class="sub-label reveal">Certifications &amp; Training</p>
+      <article class="cred-row reveal">
+        <span class="cred-ico"><i class="fas fa-certificate"></i></span>
+        <h3>PHP with Laravel Framework</h3>
+        <p>BITM</p>
+      </article>
+
+      <p class="sub-label reveal">Extra-curricular Activities</p>
+      <article class="cred-row reveal">
+        <span class="cred-ico"><i class="fas fa-code"></i></span>
         <h3>Problem Solving on URI Online Judge</h3>
-        <p>Solved 100+ problems on URI Online Judge, enhancing algorithmic thinking and problem-solving skills. Demonstrates dedication to continuous learning and improving programming abilities.</p>
-        <a href="https://judge.beecrowd.com/en/profile/175728" target="_blank" rel="noopener">View Profile <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="activity-card glass shine reveal tilt">
+        <p>Solved 100+ problems on URI Online Judge, enhancing algorithmic thinking and problem-solving skills. Demonstrates dedication to continuous learning and improving programming abilities.
+          <a href="https://judge.beecrowd.com/en/profile/175728" target="_blank" rel="noopener">View Profile <i class="fas fa-arrow-right"></i></a></p>
+      </article>
+      <article class="cred-row reveal">
+        <span class="cred-ico"><i class="fas fa-user-tie"></i></span>
         <h3>Student Prefect</h3>
         <p>Served as Student Prefect for the Computer Science and Engineering Department at Daffodil International University. Provided support to fellow students, assisted in departmental activities, and helped maintain academic standards.</p>
-      </div>
-      <div class="activity-card glass shine reveal tilt">
+      </article>
+      <article class="cred-row reveal">
+        <span class="cred-ico"><i class="fas fa-trophy"></i></span>
         <h3>Contest Participation</h3>
         <p>Actively participated in programming contests including the DIU take-off programming contest in 2017 and the ICPC Asia Dhaka Regional Preliminary Round. Sharpened competitive programming skills under time constraints.</p>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="sec-index">07 / 07</span>
-      <span class="sec-label">Let's connect</span>
-      <h2 class="sec-title">Contact <span class="grad-text">Me</span></h2>
+</div><!-- /sheet -->
+
+<!-- CONTACT + FOOTER (dark) -->
+<section id="contact" class="contact">
+  <div class="contact-glow" aria-hidden="true"></div>
+
+  <a href="mailto:shadhinmonzur18@gmail.com" class="big-marquee" data-marquee aria-label="Contact Me — send an email">
+    <div class="marquee-track">
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
     </div>
+  </a>
+
+  <div class="container">
+    <span class="sec-label light reveal">07 / 07 · Let's connect</span>
     <div class="contact-grid">
-      <div class="contact-form-card glass shine reveal">
+      <div class="contact-info reveal">
+        <h3>Contact Information</h3>
+        <p>Feel free to reach out to me for collaboration or any inquiries. I'm always open to discussing new projects and opportunities.</p>
+        <div class="ci-item copyable" data-copy="shadhinmonzur18@gmail.com" title="Click to copy" tabindex="0" role="button">
+          <small>Email</small>
+          <span>shadhinmonzur18@gmail.com</span>
+          <span class="ci-copy"><i class="fas fa-copy"></i> Copy</span>
+        </div>
+        <div class="ci-item copyable" data-copy="+8801973829988" title="Click to copy" tabindex="0" role="button">
+          <small>Phone Number</small>
+          <span>(+88) 01973829988</span>
+          <span class="ci-copy"><i class="fas fa-copy"></i> Copy</span>
+        </div>
+        <div class="ci-item">
+          <small>Location</small>
+          <span>Dhaka, Bangladesh</span>
+        </div>
+        <div class="contact-socials">
+          <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-form-card reveal">
         <h3>Send a Message</h3>
         <form id="contactForm" novalidate>
-          <div class="form-group">
-            <label for="c-name">Full Name</label>
-            <input type="text" id="c-name" placeholder="Enter your name"/>
-            <span class="form-error">Please enter your name.</span>
-          </div>
-          <div class="form-group">
-            <label for="c-email">Email Address</label>
-            <input type="email" id="c-email" placeholder="Enter your email"/>
-            <span class="form-error">Please enter a valid email address.</span>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Full Name</label>
+              <input type="text" id="c-name" placeholder="Enter your name"/>
+              <span class="form-error">Please enter your name.</span>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email Address</label>
+              <input type="email" id="c-email" placeholder="Enter your email"/>
+              <span class="form-error">Please enter a valid email address.</span>
+            </div>
           </div>
           <div class="form-group">
             <label for="c-subject">Subject</label>
@@ -740,54 +684,35 @@
             <textarea id="c-message" placeholder="Type your message here"></textarea>
             <span class="form-error">Please write a message (at least 10 characters).</span>
           </div>
-          <button type="submit" class="btn-primary" style="cursor:pointer;width:100%;justify-content:center;">
-            <i class="fas fa-paper-plane"></i> <span>Send Message</span>
-          </button>
+          <button type="submit" class="btn-primary wide"><i class="fas fa-paper-plane"></i> Send Message</button>
         </form>
       </div>
+    </div>
+  </div>
 
-      <div class="contact-info-card glass shine reveal">
-        <h3>Contact Information</h3>
-        <p>Feel free to reach out to me for collaboration or any inquiries. I'm always open to discussing new projects and opportunities.</p>
-        <div class="ci-item copyable" data-copy="shadhinmonzur18@gmail.com" title="Click to copy">
-          <i class="fas fa-envelope"></i><span>shadhinmonzur18@gmail.com</span>
-          <span class="ci-copy"><i class="fas fa-copy"></i> Copy</span>
-        </div>
-        <div class="ci-item copyable" data-copy="+8801973829988" title="Click to copy">
-          <i class="fas fa-phone"></i><span>(+88) 01973829988</span>
-          <span class="ci-copy"><i class="fas fa-copy"></i> Copy</span>
-        </div>
-        <div class="ci-item"><i class="fas fa-map-marker-alt"></i><span>Dhaka, Bangladesh</span></div>
-        <div class="contact-socials">
-          <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
-        </div>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo"><span class="nav-logo-icon">SM</span> Shekh Manzur Elahi</div>
+        <p>Full Stack Developer | ERP &amp; Web Solutions Specialist</p>
+      </div>
+      <p class="footer-copy">&copy; 2026 Shekh Manzur Elahi. All Rights Reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
       </div>
     </div>
-  </div>
+  </footer>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-logo">Shekh<span class="grad-text">Manzur</span></div>
-    <p>Full Stack Developer | ERP &amp; Web Solutions Specialist</p>
-    <div class="footer-socials">
-      <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
-    </div>
-    <p class="footer-copy">&copy; 2026 Shekh Manzur Elahi. All Rights Reserved.</p>
-  </div>
-</footer>
+</main>
 
 <!-- PROJECT MODAL -->
 <div id="modal-root" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel glass">
+  <div class="modal-panel">
     <button class="modal-close" data-close aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="modal-icon" id="modalIcon"><i class="fas fa-cubes"></i></div>
     <h3 id="modalTitle">Project</h3>
@@ -796,23 +721,17 @@
     <div class="modal-section-title">Highlights</div>
     <ul class="modal-points" id="modalPoints"></ul>
     <div class="modal-section-title">Tech Stack</div>
-    <div class="proj-stack" id="modalStack"></div>
-    <div class="proj-links" id="modalLinks" style="margin-top:1.6rem;"></div>
+    <div class="chip-row" id="modalStack"></div>
+    <div class="proj-links" id="modalLinks"></div>
   </div>
 </div>
 
 <!-- TOASTS -->
 <div id="toasts" aria-live="polite"></div>
 
-<button id="back-top" aria-label="Back to top">
-  <svg viewBox="0 0 48 48" aria-hidden="true">
-    <circle class="ring-bg" cx="24" cy="24" r="21"></circle>
-    <circle class="ring-fg" cx="24" cy="24" r="21" id="bttRing"></circle>
-  </svg>
-  <i class="fas fa-arrow-up"></i>
-</button>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="assets/js/projects.js?v=5.5"></script>
-<script defer src="assets/js/main.js?v=5.5"></script>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script defer src="assets/js/projects.js?v=6.6"></script>
+<script defer src="assets/js/main.js?v=6.6"></script>
 </body>
 </html>

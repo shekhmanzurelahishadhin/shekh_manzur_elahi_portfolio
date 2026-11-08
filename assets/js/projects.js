@@ -11,19 +11,19 @@ window.PROJECT_DATA = [
     tone: 'pb-1',
     icon: 'fa-cubes',
     title: 'ERP & VMS Systems',
-    blurb: 'ERP and Vendor Management modules for Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more — HRM, Finance, Inventory and CRM built on Laravel and Yii2 against MySQL and SQL Server.',
-    chips: ['Laravel', 'Yii2', 'SQL Server', 'MySQL'],
+    blurb: 'ERP and Vendor Management modules for Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more — HRM, Finance, Inventory and CRM built on Laravel, PHP and React.js against MySQL and SQL Server.',
+    chips: ['Laravel', 'PHP', 'React.js', 'SQL Server', 'MySQL'],
     role: 'Software Engineer · Multibrand Group',
     desc: 'A family of ERP and Vendor Management modules delivered for Multibrand Group companies — Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more — spanning manufacturing, metal trading and retail, each tailored to the client\'s workflow but sharing a common role-based core.',
     points: [
       'Delivered for Paragon, Sattar Metal, Sharif Metal, Parts Bazar, Elco and many more',
       'Modules covering HRM, Payroll, Finance, Inventory, CRM and Project Management',
-      'Built on Laravel and Yii2 against both MySQL and SQL Server backends',
+      'Built on Laravel, PHP and React.js against both MySQL and SQL Server backends',
       'Stored procedures keep heavy reporting queries fast at scale',
       'Cron jobs and database triggers automate reporting, data sync and notifications',
       'Granular role and permission layer so each department sees only its own data'
     ],
-    stack: ['Laravel', 'Yii2', 'PHP', 'SQL Server', 'MySQL', 'Stored Procedures', 'Cron Jobs'],
+    stack: ['Laravel', 'PHP', 'React.js', 'SQL Server', 'MySQL', 'Stored Procedures', 'Cron Jobs', 'Yii2'],
     links: []
   },
   {

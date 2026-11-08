@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Every project by Shekh Manzur Elahi — ERP platforms, AI tooling, Laravel and Next.js applications."/>
-  <meta name="theme-color" content="#060d14"/>
+  <meta name="theme-color" content="#02021a"/>
   <meta name="author" content="Shekh Manzur Elahi"/>
   <title>All Projects | Shekh Manzur Elahi</title>
   <link rel="canonical" href="https://shekhmanzurelahi.com/projects.html"/>
@@ -25,97 +25,80 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    /* Base fallback, inlined on purpose: if style.css is slow or fails to load,
-       the page still renders readable in the correct theme instead of flashing
-       unstyled white. style.css overrides all of this. */
-    html { color-scheme: dark light; }
-    body {
-      margin: 0;
-      background: #060d14;
-      color: #dfeaf0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-    html[data-theme="light"] body { background: #f2f7fa; color: #2b3a44; }
+    html { background: #02021a; }
+    body { margin: 0; background: #02021a; color: #ececf6; font-family: 'Poppins', system-ui, -apple-system, sans-serif; }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css?v=5.5"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=6.6"/>
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('sme-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
 <a href="#projects" class="skip-link">Skip to projects</a>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="pre-mark">SM</div>
-  <div class="pre-bar"><i id="preBar"></i></div>
-  <div class="pre-text" id="preText">Loading</div>
-</div>
-
-<div id="scroll-progress"></div>
-<canvas id="bg-canvas"></canvas>
-<div class="bg-grid"></div>
-<div class="bg-noise"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div id="cursor-glow"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <!-- NAVBAR -->
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">SM</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">Shekh Manzur <span>Elahi</span></span>
-      <span class="nav-logo-title">Full Stack Developer</span>
-    </div>
+<header id="navbar">
+  <a href="index.html" class="nav-logo" aria-label="Shekh Manzur Elahi — home">
+    <span class="nav-logo-icon">SM</span>
+    <span class="nav-logo-name">Shekh Manzur</span>
   </a>
 
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#skills">Skills</a></li>
-      <li><a href="index.html#experience">Experience</a></li>
-      <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="index.html#education">Education</a></li>
-      <li><a href="index.html#contact" class="nav-cta"><i class="fas fa-paper-plane"></i> Contact</a></li>
-    </ul>
+  <nav class="nav-pill" aria-label="Primary">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="index.html#education">Education</a>
+    <a href="index.html#certs">Credentials</a>
+  </nav>
 
+  <div class="nav-right">
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light theme">
       <i class="fas fa-sun ic-sun"></i>
       <i class="fas fa-moon ic-moon"></i>
     </button>
-
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+    <a href="index.html#contact" class="btn-outline nav-cta">Get in Touch</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="navDrawer">
-  <span class="drawer-label">Navigation</span>
-  <a href="index.html"><i class="fas fa-house"></i> Home</a>
-  <a href="index.html#about"><i class="fas fa-user"></i> About</a>
-  <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
-  <a href="index.html#experience"><i class="fas fa-briefcase"></i> Experience</a>
-  <a href="projects.html"><i class="fas fa-folder-open"></i> All Projects</a>
-  <a href="index.html#education"><i class="fas fa-graduation-cap"></i> Education</a>
-  <div class="drawer-divider"></div>
+  <a href="index.html"><span>01</span> Home</a>
+  <a href="index.html#about"><span>02</span> About</a>
+  <a href="index.html#skills"><span>03</span> Skills</a>
+  <a href="index.html#experience"><span>04</span> Experience</a>
+  <a href="projects.html"><span>05</span> All Projects</a>
+  <a href="index.html#education"><span>06</span> Education</a>
+  <a href="index.html#certs"><span>07</span> Credentials</a>
+  <a href="index.html#contact"><span>08</span> Contact</a>
   <div class="drawer-bottom">
-    <a href="index.html#contact" class="drawer-cta"><i class="fas fa-paper-plane"></i> Contact Me</a>
-    <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener"><i class="fas fa-download"></i> Resume</a>
+    <a href="https://drive.google.com/file/d/1amBa8bB_dJqEo8JO63kAORTa_7Qh6wjz/view?usp=sharing" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-download"></i> Resume</a>
   </div>
 </div>
 
+<main id="main">
+
 <!-- PAGE HEADER -->
-<header class="page-head">
-  <div class="container">
-    <span class="sec-label reveal">Complete archive</span>
-    <h1 class="sec-title reveal">All <span class="grad-text">Projects</span></h1>
-    <p class="sec-sub reveal">Every system I've built and shipped — enterprise ERP platforms, AI tooling, headless Next.js frontends and Laravel applications. Select any card for the full technical breakdown.</p>
-    <nav class="crumbs reveal" aria-label="Breadcrumb">
+<header class="page-hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <span class="hero-badge appear">Complete archive</span>
+    <h1 class="hero-title" data-split>All Projects</h1>
+    <p class="hero-desc appear">Every system I've built and shipped — enterprise ERP platforms, AI tooling, headless Next.js frontends and Laravel applications. Select any card for the full technical breakdown.</p>
+    <nav class="crumbs appear" aria-label="Breadcrumb">
       <a href="index.html"><i class="fas fa-house"></i> Home</a>
       <i class="fas fa-chevron-right"></i>
       <span>Projects</span>
@@ -123,63 +106,80 @@
   </div>
 </header>
 
-<!-- ALL PROJECTS -->
-<section id="projects" style="padding-top:2rem;">
-  <div class="container">
-    <div class="proj-toolbar reveal">
-      <div class="proj-tabs">
-        <button class="proj-tab active" data-cat="all">All</button>
-        <button class="proj-tab" data-cat="laravel">Laravel</button>
-        <button class="proj-tab" data-cat="react">React.js</button>
-        <button class="proj-tab" data-cat="nextjs">Next.js</button>
-        <button class="proj-tab" data-cat="ai">AI</button>
-        <button class="proj-tab" data-cat="fullstack">Full Stack</button>
+<div class="sheet">
+  <section id="projects">
+    <div class="container">
+      <div class="proj-toolbar">
+        <div class="proj-tabs" role="toolbar" aria-label="Filter projects by technology">
+          <button class="proj-tab active" data-cat="all">All</button>
+          <button class="proj-tab" data-cat="laravel">Laravel</button>
+          <button class="proj-tab" data-cat="react">React.js</button>
+          <button class="proj-tab" data-cat="nextjs">Next.js</button>
+          <button class="proj-tab" data-cat="ai">AI</button>
+          <button class="proj-tab" data-cat="fullstack">Full Stack</button>
+        </div>
+
+        <div class="proj-search">
+          <i class="fas fa-search"></i>
+          <label for="projSearch" class="sr-only">Search projects by name or technology</label>
+          <input type="search" id="projSearch" placeholder="Search projects or tech…" autocomplete="off"/>
+          <button type="button" class="clear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+        </div>
       </div>
 
-      <div class="proj-search">
-        <i class="fas fa-search"></i>
-        <label for="projSearch" class="sr-only">Search projects by name or technology</label>
-        <input type="search" id="projSearch" placeholder="Search projects or tech…" autocomplete="off"/>
-        <button type="button" class="clear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+      <p class="proj-result" id="projResult" aria-live="polite"></p>
+
+      <div class="proj-grid" data-projects></div>
+
+      <div class="proj-empty">
+        <i class="fas fa-folder-open"></i>
+        <h3>No projects match that search</h3>
+        <p>Try a different keyword, or clear the filters to see every project.</p>
+        <button type="button" class="btn-outline accent" data-clear-filters><i class="fas fa-rotate-left"></i> Clear filters</button>
+      </div>
+
+      <div class="proj-cta reveal">
+        <span class="count" id="projCount"></span>
+        <a href="index.html#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Start a Project Together</a>
       </div>
     </div>
-
-    <div class="proj-grid" data-projects></div>
-
-    <div class="proj-empty">
-      <i class="fas fa-folder-open"></i>
-      <h3>No projects match that search</h3>
-      <p>Try a different keyword, or clear the filters to see all 11 projects.</p>
-    </div>
-
-    <div class="proj-cta reveal">
-      <span class="count" id="projCount"></span>
-      <a href="index.html#contact" class="btn-primary">
-        <i class="fas fa-paper-plane"></i> <span>Start a Project Together</span>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-logo">Shekh<span class="grad-text">Manzur</span></div>
-    <p>Full Stack Developer | ERP &amp; Web Solutions Specialist</p>
-    <div class="footer-socials">
-      <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
+<section class="contact" aria-label="Footer">
+  <div class="contact-glow" aria-hidden="true"></div>
+  <a href="index.html#contact" class="big-marquee" data-marquee aria-label="Contact Me">
+    <div class="marquee-track">
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
+      <span>Contact Me</span><i class="sep"></i>
     </div>
-    <p class="footer-copy">&copy; 2026 Shekh Manzur Elahi. All Rights Reserved.</p>
-  </div>
-</footer>
+  </a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo"><span class="nav-logo-icon">SM</span> Shekh Manzur Elahi</div>
+        <p>Full Stack Developer | ERP &amp; Web Solutions Specialist</p>
+      </div>
+      <p class="footer-copy">&copy; 2026 Shekh Manzur Elahi. All Rights Reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/shekhmanzurelahishadhin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/shekh-monzur-elahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:shadhinmonzur18@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+8801973829988" aria-label="Phone"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+  </footer>
+</section>
+
+</main>
 
 <!-- PROJECT MODAL -->
 <div id="modal-root" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel glass">
+  <div class="modal-panel">
     <button class="modal-close" data-close aria-label="Close"><i class="fas fa-times"></i></button>
     <div class="modal-icon" id="modalIcon"><i class="fas fa-cubes"></i></div>
     <h3 id="modalTitle">Project</h3>
@@ -188,23 +188,16 @@
     <div class="modal-section-title">Highlights</div>
     <ul class="modal-points" id="modalPoints"></ul>
     <div class="modal-section-title">Tech Stack</div>
-    <div class="proj-stack" id="modalStack"></div>
-    <div class="proj-links" id="modalLinks" style="margin-top:1.6rem;"></div>
+    <div class="chip-row" id="modalStack"></div>
+    <div class="proj-links" id="modalLinks"></div>
   </div>
 </div>
 
-<!-- TOASTS -->
 <div id="toasts" aria-live="polite"></div>
 
-<button id="back-top" aria-label="Back to top">
-  <svg viewBox="0 0 48 48" aria-hidden="true">
-    <circle class="ring-bg" cx="24" cy="24" r="21"></circle>
-    <circle class="ring-fg" cx="24" cy="24" r="21" id="bttRing"></circle>
-  </svg>
-  <i class="fas fa-arrow-up"></i>
-</button>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="assets/js/projects.js?v=5.5"></script>
-<script defer src="assets/js/main.js?v=5.5"></script>
+<button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script defer src="assets/js/projects.js?v=6.6"></script>
+<script defer src="assets/js/main.js?v=6.6"></script>
 </body>
 </html>
