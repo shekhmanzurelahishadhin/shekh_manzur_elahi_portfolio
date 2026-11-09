@@ -649,23 +649,20 @@ html[data-theme="dark"] .ic-moon { transform: translateY(-150%); opacity: 0; }
 .cred-row p a { display: inline-flex; gap: 0.4rem; align-items: center; margin-left: 0.4rem; color: var(--accent-text); font-weight: 500; }
 
 /* ---------- CONTACT / FOOTER ---------- */
-.contact { position: relative; color: #fff; padding-top: calc(var(--sheet-radius) + 3rem); margin-top: calc(var(--sheet-radius) * -1); overflow: hidden; }
+.contact { position: relative; color: #fff; padding-top: calc(var(--sheet-radius) + 3rem); margin-top: calc(var(--sheet-radius) * -1); overflow: hidden; overflow: clip; }
 .contact-glow {
   position: absolute; left: 50%; bottom: -380px; transform: translateX(-50%);
   width: min(1300px, 140vw); height: 760px;
   background: radial-gradient(closest-side, rgba(110, 86, 255, 0.75), rgba(81, 56, 242, 0.25) 50%, transparent 75%);
   filter: blur(30px); pointer-events: none;
 }
-.big-marquee { display: block; overflow: hidden; margin-bottom: 3rem; }
-.big-marquee .marquee-track { animation-duration: 28s; align-items: center; }
-.big-marquee span {
-  font-size: clamp(3.6rem, 11vw, 9rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; white-space: nowrap;
-  padding: 0 0.3em;
-  background: linear-gradient(90deg, rgba(255,255,255,0.35), #fff 40%, #fff 60%, rgba(255,255,255,0.35));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+.contact-title {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 0.6em;
+  width: fit-content; margin: 0 auto 3rem; color: #fff;
+  font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em;
 }
-.big-marquee .sep { width: clamp(14px, 1.6vw, 22px); height: clamp(14px, 1.6vw, 22px); border-radius: 50%; background: #fff; flex-shrink: 0; margin: 0 0.3em; }
-.big-marquee:hover .marquee-track { animation-play-state: paused; }
+.contact-title i { font-size: 0.55em; color: var(--accent-soft); transition: transform 0.4s var(--ease); }
+.contact-title:hover i { transform: translateX(6px); }
 
 .contact-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 4.5rem); margin-top: 1rem; position: relative; }
 .contact-info h3, .contact-form-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
@@ -935,7 +932,7 @@ html[data-theme="dark"] .ic-moon { transform: translateY(-150%); opacity: 0; }
   .cred-row p { grid-column: auto; }
   .cred-ico { width: 40px; height: 40px; }
 
-  .big-marquee { margin-bottom: 2rem; }
+  .contact-title { margin-bottom: 2rem; }
   .contact-form-card { padding: 1.3rem; }
   .form-row { grid-template-columns: 1fr; gap: 0; }
   .ci-item span { font-size: 1.02rem; }
