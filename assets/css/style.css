@@ -777,6 +777,22 @@ html[data-theme="light"] .pf-open { color: #047857; }
 }
 #back-top.show { opacity: 1; transform: none; pointer-events: auto; }
 #back-top:hover { transform: translateY(-3px); }
+/* progress ring around back-to-top (only where masks work, else it would cover the button) */
+@supports ((-webkit-mask: none) or (mask: none)) {
+#back-top::before {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(var(--accent-soft) calc(var(--p, 0) * 360deg), var(--line-strong) 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+}
+}
+
+/* reading progress bar */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 1000;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+}
 
 /* ---------- PROJECTS PAGE / 404 ---------- */
 .page-hero { position: relative; color: #fff; text-align: center; padding: calc(var(--nav-h) + clamp(2.5rem, 7vw, 5rem)) 0 calc(var(--sheet-radius) + clamp(2.5rem, 6vw, 4rem)); overflow: hidden; }
@@ -978,6 +994,24 @@ html[data-theme="light"] .pf-open { color: #047857; }
   .about-stats, .xp-summary { grid-template-columns: 1fr; }
   .xp-stat { flex-direction: row; align-items: baseline; }
   .hero-stage { width: 240px; }
+}
+
+/* ---------- fallbacks for older browsers (Safari < 15, old Chrome/Edge) ---------- */
+@supports not (inset: 0) {
+  .pv-img, .hero-photo::after, #modal-root, .modal-backdrop { top: 0; right: 0; bottom: 0; left: 0; }
+  #back-top::before { top: -6px; right: -6px; bottom: -6px; left: -6px; }
+  .navbar, #navbar { top: 0; left: 0; right: 0; }
+}
+@supports not (aspect-ratio: 1 / 1) {
+  /* the cover images are absolutely positioned, so without aspect-ratio the box would collapse */
+  .proj-card .pv { height: 0; padding-top: 75%; }
+  .proj-grid .proj-card .pv { padding-top: 62.5%; }
+  .hero-photo { height: 0; padding-top: 125%; }
+  .hero-photo img { position: absolute; top: 0; left: 0; }
+}
+@supports not (aspect-ratio: 1 / 1) {
+  @media (max-width: 900px) { .proj-card .pv { padding-top: 56.25%; } }
+  @media (max-width: 640px) { .proj-card .pv { padding-top: 50%; } }
 }
 
 @media (prefers-reduced-motion: reduce) {

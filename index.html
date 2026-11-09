@@ -32,11 +32,11 @@
     html { background: #02021a; }
     body { margin: 0; background: #02021a; color: #ececf6; font-family: 'Poppins', system-ui, -apple-system, sans-serif; }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css?v=8.1"/>
+  <link rel="stylesheet" href="assets/css/style.css?v=8.3"/>
 
   <script>
     // set the saved theme before first paint so there is no light/dark flash
-    document.documentElement.classList.add('js');
+    if ('IntersectionObserver' in window) { document.documentElement.classList.add('js'); setTimeout(function () { if (!window.__smeReady) document.documentElement.classList.remove('js'); }, 4000); }
     try {
       var t = localStorage.getItem('sme-theme');
       if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -728,7 +728,7 @@
 
 <button id="back-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-<script defer src="assets/js/projects.js?v=8.1"></script>
-<script defer src="assets/js/main.js?v=8.1"></script>
+<script defer src="assets/js/projects.js?v=8.3"></script>
+<script defer src="assets/js/main.js?v=8.3"></script>
 </body>
 </html>

@@ -323,9 +323,19 @@
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-pill a');
 
+  // reading progress: thin bar on top + ring around back-to-top
+  const progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.prepend(progress);
+
   let ticking = false;
   function onScroll() {
     const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    progress.style.transform = `scaleX(${p.toFixed(4)})`;
+    if (btt) btt.style.setProperty('--p', p.toFixed(4));
     if (navbar) navbar.classList.toggle('scrolled', y > 30);
     if (btt) btt.classList.toggle('show', y > 600);
 
@@ -836,6 +846,9 @@
       });
     });
 
+    let lastSubmit = null;
+    form.querySelectorAll('button[type="submit"]').forEach((b) => b.addEventListener('click', () => { lastSubmit = b; }));
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const fields = [...form.querySelectorAll('input, textarea')];
@@ -850,7 +863,10 @@
       const subject = document.getElementById('c-subject').value.trim();
       const message = document.getElementById('c-message').value.trim();
       // the clicked button decides the channel: WhatsApp (default) or email
-      const via = (e.submitter && e.submitter.dataset.via) || 'whatsapp';
+      // e.submitter is missing in Safari < 15.4, so fall back to the last clicked button
+      const sub = e.submitter || lastSubmit;
+      const via = (sub && sub.dataset.via) || 'whatsapp';
+      lastSubmit = null;
       if (via === 'email') {
         const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
         window.location.href = `mailto:shadhinmonzur18@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -863,4 +879,7 @@
       form.reset();
     });
   }
+
+  // tells the inline head script that everything ran, so it keeps the animations on
+  window.__smeReady = true;
 })();
