@@ -42,6 +42,7 @@
 
   function visual(p, withChips) {
     const chips = withChips ? `<div class="pv-chips">${p.chips.slice(0, 3).map(() => '<span></span>').join('')}</div>` : '';
+    if (p.img) return `<div class="pv has-img ${p.tone}" aria-hidden="true"><img class="pv-img" src="${p.img}" alt="" loading="lazy" decoding="async"/></div>`;
     return `<div class="pv ${p.tone}" aria-hidden="true"><i class="fas ${p.icon} pv-ico"></i>${chips}</div>`;
   }
 
@@ -848,9 +849,17 @@
       const email = document.getElementById('c-email').value.trim();
       const subject = document.getElementById('c-subject').value.trim();
       const message = document.getElementById('c-message').value.trim();
-      const text = `*New Contact Message from Website*%0A👤 *Name:* ${encodeURIComponent(name)}%0A📧 *Email:* ${encodeURIComponent(email)}%0A📝 *Subject:* ${encodeURIComponent(subject)}%0A💬 *Message:* ${encodeURIComponent(message)}`;
-      window.open(`https://api.whatsapp.com/send?phone=8801973829988&text=${text}`, '_blank');
-      toast('Opening WhatsApp with your message…', 'ok');
+      // the clicked button decides the channel: WhatsApp (default) or email
+      const via = (e.submitter && e.submitter.dataset.via) || 'whatsapp';
+      if (via === 'email') {
+        const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+        window.location.href = `mailto:shadhinmonzur18@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        toast('Opening your email app…', 'ok');
+      } else {
+        const text = `*New Contact Message from Website*%0A👤 *Name:* ${encodeURIComponent(name)}%0A📧 *Email:* ${encodeURIComponent(email)}%0A📝 *Subject:* ${encodeURIComponent(subject)}%0A💬 *Message:* ${encodeURIComponent(message)}`;
+        window.open(`https://api.whatsapp.com/send?phone=8801973829988&text=${text}`, '_blank');
+        toast('Opening WhatsApp with your message…', 'ok');
+      }
       form.reset();
     });
   }

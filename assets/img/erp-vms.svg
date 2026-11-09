@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t">
+  <title id="t">Illustration of an ERP and vehicle management dashboard</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a1060"/>
+      <stop offset="0.55" stop-color="#2a1a9c"/>
+      <stop offset="1" stop-color="#5138f2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.1" r="0.7">
+      <stop offset="0" stop-color="#8f7dff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8f7dff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8f7dff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8f7dff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a99bff"/>
+      <stop offset="1" stop-color="#6a55ff"/>
+    </linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#05031f" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+  <!-- faint grid -->
+  <g stroke="#ffffff" stroke-opacity="0.05">
+    <path d="M0 100H800M0 200H800M0 300H800M0 400H800M0 500H800M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600M600 0V600M700 0V600"/>
+  </g>
+
+  <!-- app window -->
+  <g filter="url(#sh)">
+    <rect x="70" y="70" width="660" height="460" rx="22" fill="#0d0a35"/>
+  </g>
+  <rect x="70" y="70" width="660" height="460" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.12"/>
+  <!-- title bar -->
+  <path d="M92 70h616a22 22 0 0 1 22 22v18H70V92a22 22 0 0 1 22-22z" fill="#15104a"/>
+  <circle cx="96" cy="90" r="5" fill="#ff6b8b"/><circle cx="113" cy="90" r="5" fill="#ffc861"/><circle cx="130" cy="90" r="5" fill="#45d49b"/>
+  <rect x="300" y="83" width="200" height="14" rx="7" fill="#ffffff" fill-opacity="0.08"/>
+
+  <!-- sidebar -->
+  <path d="M70 510v-400h150v420H92a22 22 0 0 1-22-22z" fill="#120d42"/>
+  <rect x="90" y="128" width="30" height="30" rx="9" fill="#5138f2"/>
+  <text x="105" y="148" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">ERP</text>
+  <rect x="128" y="138" width="62" height="10" rx="5" fill="#ffffff" fill-opacity="0.25"/>
+
+  <g font-family="Poppins, Arial, sans-serif" font-size="13" fill="#c9c0ff">
+    <rect x="84" y="178" width="122" height="34" rx="10" fill="#5138f2" fill-opacity="0.35"/>
+    <g fill="#ffffff"><text x="122" y="200">Dashboard</text></g>
+    <text x="122" y="240">HRM</text>
+    <text x="122" y="276">Payroll</text>
+    <text x="122" y="312">Inventory</text>
+    <text x="122" y="348">Finance</text>
+    <text x="122" y="384">CRM</text>
+    <text x="122" y="420">VMS</text>
+  </g>
+  <!-- sidebar icons -->
+  <g fill="none" stroke="#a99bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M97 189h8v8h-8zM108 189h6v8h-6M97 200h17" stroke="#fff"/>
+    <circle cx="105" cy="230" r="4"/><path d="M98 242a7 7 0 0 1 14 0"/>
+    <rect x="97" y="265" width="17" height="12" rx="2"/><circle cx="105.5" cy="271" r="2.5"/>
+    <path d="M97 303l8.5-5 8.5 5v10H97z"/><path d="M97 303l8.5 5 8.5-5M105.5 308v5"/>
+    <path d="M98 350v-10M104 350v-14M110 350v-7"/>
+    <path d="M97 386a8 8 0 0 1 17 0M105.5 371a5 5 0 1 1 0 .1"/>
+    <path d="M96 418h4l3-7h9l3 7h1v5H96z"/><circle cx="101" cy="424" r="2"/><circle cx="111" cy="424" r="2"/>
+  </g>
+  <rect x="84" y="474" width="122" height="38" rx="12" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="104" cy="493" r="10" fill="#8f7dff"/>
+  <rect x="122" y="486" width="64" height="7" rx="3.5" fill="#ffffff" fill-opacity="0.3"/>
+  <rect x="122" y="498" width="44" height="6" rx="3" fill="#ffffff" fill-opacity="0.15"/>
+
+  <!-- KPI cards -->
+  <g font-family="Poppins, Arial, sans-serif" font-size="11" fill="#a99bff">
+    <rect x="240" y="128" width="112" height="78" rx="14" fill="#1a1452"/>
+    <text x="254" y="150">Employees</text>
+    <rect x="254" y="164" width="58" height="14" rx="7" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="254" y="186" width="70" height="6" rx="3" fill="#45d49b" fill-opacity="0.7"/>
+
+    <rect x="364" y="128" width="112" height="78" rx="14" fill="#1a1452"/>
+    <text x="378" y="150">Stock Items</text>
+    <rect x="378" y="164" width="66" height="14" rx="7" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="378" y="186" width="50" height="6" rx="3" fill="#45d49b" fill-opacity="0.7"/>
+
+    <rect x="488" y="128" width="112" height="78" rx="14" fill="#1a1452"/>
+    <text x="502" y="150">Vehicles</text>
+    <rect x="502" y="164" width="48" height="14" rx="7" fill="#ffffff" fill-opacity="0.85"/>
+    <rect x="502" y="186" width="62" height="6" rx="3" fill="#ffc861" fill-opacity="0.75"/>
+
+    <rect x="612" y="128" width="100" height="78" rx="14" fill="#5138f2"/>
+    <text x="626" y="150" fill="#e4dfff">Invoices</text>
+    <rect x="626" y="164" width="54" height="14" rx="7" fill="#ffffff"/>
+    <rect x="626" y="186" width="40" height="6" rx="3" fill="#ffffff" fill-opacity="0.5"/>
+  </g>
+
+  <!-- revenue / area chart -->
+  <rect x="240" y="220" width="300" height="168" rx="14" fill="#1a1452"/>
+  <rect x="256" y="236" width="90" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.55"/>
+  <rect x="470" y="234" width="54" height="14" rx="7" fill="#ffffff" fill-opacity="0.08"/>
+  <g stroke="#ffffff" stroke-opacity="0.07"><path d="M256 290H524M256 320H524M256 350H524"/></g>
+  <path d="M256 352 L290 330 L324 338 L358 304 L392 314 L426 284 L460 292 L494 266 L524 274 V372 H256 Z" fill="url(#area)"/>
+  <path d="M256 352 L290 330 L324 338 L358 304 L392 314 L426 284 L460 292 L494 266 L524 274" fill="none" stroke="#b7abff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="494" cy="266" r="6" fill="#0d0a35" stroke="#fff" stroke-width="3"/>
+
+  <!-- bar chart -->
+  <rect x="552" y="220" width="160" height="168" rx="14" fill="#1a1452"/>
+  <rect x="568" y="236" width="64" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.55"/>
+  <g fill="url(#bar)">
+    <rect x="570" y="320" width="16" height="52" rx="5"/>
+    <rect x="594" y="296" width="16" height="76" rx="5"/>
+    <rect x="618" y="330" width="16" height="42" rx="5"/>
+    <rect x="642" y="282" width="16" height="90" rx="5"/>
+    <rect x="666" y="306" width="16" height="66" rx="5"/>
+    <rect x="690" y="292" width="10" height="80" rx="4" fill-opacity="0.5"/>
+  </g>
+
+  <!-- table -->
+  <rect x="240" y="400" width="472" height="112" rx="14" fill="#1a1452"/>
+  <rect x="256" y="414" width="80" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.55"/>
+  <g>
+    <rect x="256" y="436" width="440" height="1" fill="#ffffff" fill-opacity="0.08"/>
+    <circle cx="266" cy="452" r="8" fill="#8f7dff" fill-opacity="0.6"/>
+    <rect x="282" y="448" width="110" height="8" rx="4" fill="#ffffff" fill-opacity="0.35"/>
+    <rect x="430" y="448" width="70" height="8" rx="4" fill="#ffffff" fill-opacity="0.18"/>
+    <rect x="630" y="444" width="66" height="16" rx="8" fill="#45d49b" fill-opacity="0.25"/>
+    <rect x="642" y="449" width="42" height="6" rx="3" fill="#45d49b"/>
+
+    <rect x="256" y="468" width="440" height="1" fill="#ffffff" fill-opacity="0.08"/>
+    <circle cx="266" cy="484" r="8" fill="#ffc861" fill-opacity="0.6"/>
+    <rect x="282" y="480" width="90" height="8" rx="4" fill="#ffffff" fill-opacity="0.35"/>
+    <rect x="430" y="480" width="86" height="8" rx="4" fill="#ffffff" fill-opacity="0.18"/>
+    <rect x="630" y="476" width="66" height="16" rx="8" fill="#ffc861" fill-opacity="0.25"/>
+    <rect x="642" y="481" width="42" height="6" rx="3" fill="#ffc861"/>
+  </g>
+
+  <!-- floating vehicle card -->
+  <g filter="url(#sh)">
+    <rect x="600" y="455" width="170" height="92" rx="16" fill="#ffffff"/>
+  </g>
+  <rect x="616" y="471" width="44" height="44" rx="12" fill="#5138f2" fill-opacity="0.12"/>
+  <g fill="none" stroke="#5138f2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M624 500h4l4-9h14l5 9h2v7h-29z"/>
+    <circle cx="631" cy="508" r="3" fill="#fff"/><circle cx="647" cy="508" r="3" fill="#fff"/>
+  </g>
+  <rect x="672" y="476" width="78" height="9" rx="4.5" fill="#02021a" fill-opacity="0.8"/>
+  <rect x="672" y="492" width="56" height="7" rx="3.5" fill="#02021a" fill-opacity="0.3"/>
+  <rect x="616" y="525" width="138" height="7" rx="3.5" fill="#5138f2" fill-opacity="0.15"/>
+  <rect x="616" y="525" width="92" height="7" rx="3.5" fill="#5138f2"/>
+
+  <!-- floating approval chip -->
+  <g filter="url(#sh)">
+    <rect x="34" y="420" width="150" height="54" rx="27" fill="#ffffff"/>
+  </g>
+  <circle cx="61" cy="447" r="15" fill="#45d49b"/>
+  <path d="M54 447l5 5 9-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="84" y="444" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="600" fill="#02021a">Approved</text>
+  <rect x="84" y="452" width="70" height="6" rx="3" fill="#02021a" fill-opacity="0.25"/>
+</svg>
