@@ -401,14 +401,15 @@
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const target = parseInt(el.dataset.count, 10);
+      const target = parseFloat(el.dataset.count);
       const suffix = el.dataset.suffix || '';
-      if (reduceMotion) { el.textContent = target + suffix; countObserver.unobserve(el); return; }
+      const dec = (el.dataset.count.split('.')[1] || '').length;
+      if (reduceMotion) { el.textContent = target.toFixed(dec) + suffix; countObserver.unobserve(el); return; }
       const dur = 1400;
       const start = performance.now();
       (function step(now) {
         const p = Math.min((now - start) / dur, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+        el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec) + suffix;
         if (p < 1) requestAnimationFrame(step);
       })(start);
       countObserver.unobserve(el);
