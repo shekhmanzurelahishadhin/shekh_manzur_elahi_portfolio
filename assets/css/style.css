@@ -700,10 +700,14 @@ html[data-theme="light"] .pf-open { color: #047857; }
 .form-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 0.4rem; }
 .form-actions button { width: 100%; justify-content: center; }
 .form-note { margin-top: 0.8rem; font-size: 0.8rem; color: var(--on-ink-muted); text-align: center; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
+.form-actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; min-width: 0; }
 .form-group label { font-size: 0.82rem; color: var(--on-ink-muted); }
+/* Firefox gives inputs a built-in min width (size=20), so force them to fit the column */
 .form-group input, .form-group textarea {
+  width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
   font: inherit; font-size: 0.95rem; color: #fff;
   padding: 0.9rem 1.2rem; border-radius: 18px;
   background: rgba(255, 255, 255, 0.06); border: 1px solid var(--on-ink-line);
@@ -712,6 +716,9 @@ html[data-theme="light"] .pf-open { color: #047857; }
 .form-group input { border-radius: 999px; }
 .form-group textarea { min-height: 130px; resize: vertical; }
 .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(236, 236, 246, 0.42); }
+/* Firefox fades placeholders with its own opacity, and tints invalid fields with a red glow */
+.form-group input::-moz-placeholder, .form-group textarea::-moz-placeholder { opacity: 1; }
+.form-group input:-moz-ui-invalid, .form-group textarea:-moz-ui-invalid { box-shadow: none; }
 .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-soft); background: rgba(255, 255, 255, 0.09); }
 .form-error { display: none; font-size: 0.78rem; color: #fda4af; }
 .form-group.invalid input, .form-group.invalid textarea { border-color: #fb7185; }
